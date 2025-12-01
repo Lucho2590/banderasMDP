@@ -75,7 +75,23 @@
     animation: gradient-shift 8s ease infinite;
   }
   
+  /* Gradiente celeste y blanco animado - Predomina el celeste */
+  .gradient-celeste-blanco {
+    background: linear-gradient(135deg, #74ACDF 0%, #8BB8E8 15%, #A2C4F1 30%, #74ACDF 45%, #8BB8E8 60%, #A2C4F1 75%, #74ACDF 90%, #8BB8E8 100%);
+    background-size: 300% 300%;
+    animation: gradient-shift-celeste 10s ease infinite;
+  }
+  
   @keyframes gradient-shift {
+    0%, 100% { 
+      background-position: 0% 50%; 
+    }
+    50% { 
+      background-position: 100% 50%; 
+    }
+  }
+  
+  @keyframes gradient-shift-celeste {
     0%, 100% { 
       background-position: 0% 50%; 
     }

@@ -8,7 +8,12 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "keywords": ["banderas", "mar-del-plata", "nextjs", "ecommerce"],
+  "keywords": [
+    "banderas",
+    "mar-del-plata",
+    "nextjs",
+    "ecommerce"
+  ],
   "author": "OG comunicación y diseño",
   "license": "ISC",
   "description": "Sitio web de Banderas MDP - Banderas y productos personalizados en Mar del Plata",
@@ -19,6 +24,7 @@
     "autoprefixer": "^10.4.22",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gsap": "^3.13.0",
     "lucide-react": "^0.555.0",
     "next": "^16.0.6",
     "postcss": "^8.5.6",
