@@ -4,26 +4,38 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 0 84% 60%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 221 83% 53%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 0 84% 60%;
+    /* Sistema de diseño BanderasMDP - Variables base */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8F8F8;
+    --text-primary: #333333;
+    --text-secondary: #555555;
+    --accent-primary: #0066CC;
+    --accent-hover: #004A99;
+    --border-color: #DDDDDD;
+    
+    /* shadCN UI - Sincronizado con brand colors */
+    --background: var(--bg-primary);
+    --foreground: var(--text-primary);
+    --card: var(--bg-primary);
+    --card-foreground: var(--text-primary);
+    --popover: var(--bg-primary);
+    --popover-foreground: var(--text-primary);
+    --primary: var(--accent-primary);
+    --primary-foreground: #FFFFFF;
+    --secondary: var(--bg-secondary);
+    --secondary-foreground: var(--text-primary);
+    --muted: var(--bg-secondary);
+    --muted-foreground: var(--text-secondary);
+    --accent: var(--accent-primary);
+    --accent-foreground: #FFFFFF;
+    --destructive: #DC2626;
+    --destructive-foreground: #FFFFFF;
+    --border: var(--border-color);
+    --input: var(--border-color);
+    --ring: var(--accent-primary);
     --radius: 0.75rem;
+    
+    /* Chart colors (mantenidos para compatibilidad) */
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -37,12 +49,13 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-brand-bg-primary text-brand-text-primary antialiased;
     font-family: var(--font-inter), sans-serif;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-playfair), serif;
     font-weight: 700;
+    @apply text-brand-text-primary;
   }
 }
 
@@ -51,29 +64,34 @@
     text-wrap: balance;
   }
   
+  /* Gradientes actualizados con la nueva paleta */
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(0, 84%, 60%) 0%, hsl(221, 83%, 53%) 100%);
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-hover) 100%);
   }
   
   .gradient-hero {
-    background: linear-gradient(135deg, hsl(0, 84%, 60%) 0%, hsl(221, 83%, 53%) 50%, hsl(0, 84%, 60%) 100%);
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-hover) 50%, var(--accent-primary) 100%);
     background-size: 200% 200%;
     animation: gradient-shift 8s ease infinite;
   }
   
   @keyframes gradient-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    0%, 100% { 
+      background-position: 0% 50%; 
+    }
+    50% { 
+      background-position: 100% 50%; 
+    }
   }
   
   .glass-effect {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border-color);
   }
   
   .shadow-glow {
-    box-shadow: 0 0 20px rgba(0, 84%, 60%, 0.3);
+    box-shadow: 0 0 20px rgba(0, 102, 204, 0.2);
   }
 }
 

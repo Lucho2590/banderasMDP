@@ -14,39 +14,56 @@ const config: Config = {
         serif: ['var(--font-playfair)', 'serif'],
       },
       colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        // Brand colors - Sistema de diseño BanderasMDP
+        brand: {
+          bg: {
+            primary: "#FFFFFF",
+            secondary: "#F8F8F8",
+          },
+          text: {
+            primary: "#333333",
+            secondary: "#555555",
+          },
+          accent: {
+            DEFAULT: "#0066CC",
+            hover: "#004A99",
+          },
+          border: "#DDDDDD",
+        },
+        // shadCN UI colors - Sincronizados con brand
+        background: "var(--bg-primary)",
+        foreground: "var(--text-primary)",
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "var(--bg-primary)",
+          foreground: "var(--text-primary)",
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "var(--bg-primary)",
+          foreground: "var(--text-primary)",
         },
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "var(--accent-primary)",
+          foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "var(--bg-secondary)",
+          foreground: "var(--text-primary)",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "var(--bg-secondary)",
+          foreground: "var(--text-secondary)",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "var(--accent-primary)",
+          foreground: "#FFFFFF",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "#DC2626",
+          foreground: "#FFFFFF",
         },
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
+        border: "var(--border-color)",
+        input: "var(--border-color)",
+        ring: "var(--accent-primary)",
         chart: {
           "1": "hsl(var(--chart-1))",
           "2": "hsl(var(--chart-2))",
@@ -59,6 +76,15 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      animation: {
+        'gradient-shift': 'gradient-shift 8s ease infinite',
+      },
+      keyframes: {
+        'gradient-shift': {
+          '0%, 100%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
+        },
       },
     },
   },
