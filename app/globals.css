@@ -4,14 +4,18 @@
 
 @layer base {
   :root {
-    /* Sistema de diseño BanderasMDP - Variables base */
+    /* Sistema de diseño BanderasMDP - Variables base mejoradas */
     --bg-primary: #FFFFFF;
-    --bg-secondary: #F8F8F8;
-    --text-primary: #333333;
-    --text-secondary: #555555;
+    --bg-secondary: #F9FAFB;
+    --bg-tertiary: #F3F4F6;
+    --text-primary: #111827;
+    --text-secondary: #6B7280;
+    --text-tertiary: #9CA3AF;
     --accent-primary: #0066CC;
-    --accent-hover: #004A99;
-    --border-color: #DDDDDD;
+    --accent-hover: #0052A3;
+    --border-color: #E5E7EB;
+    --border-light: #F3F4F6;
+    --border-dark: #D1D5DB;
     
     /* shadCN UI - Sincronizado con brand colors */
     --background: var(--bg-primary);
@@ -63,51 +67,100 @@
   .text-balance {
     text-wrap: balance;
   }
-  
-  /* Gradientes actualizados con la nueva paleta */
+
+  /* Gradientes mejorados */
   .gradient-primary {
     background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-hover) 100%);
   }
-  
+
   .gradient-hero {
     background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-hover) 50%, var(--accent-primary) 100%);
     background-size: 200% 200%;
     animation: gradient-shift 8s ease infinite;
   }
-  
-  /* Gradiente celeste y blanco animado - Predomina el celeste */
+
+  /* Gradiente celeste y blanco animado mejorado */
   .gradient-celeste-blanco {
-    background: linear-gradient(135deg, #74ACDF 0%, #8BB8E8 15%, #A2C4F1 30%, #74ACDF 45%, #8BB8E8 60%, #A2C4F1 75%, #74ACDF 90%, #8BB8E8 100%);
-    background-size: 300% 300%;
-    animation: gradient-shift-celeste 10s ease infinite;
+    background: linear-gradient(135deg, #66B3FF 0%, #3399FF 25%, #0066CC 50%, #3399FF 75%, #66B3FF 100%);
+    background-size: 400% 400%;
+    animation: gradient-shift-celeste 15s ease infinite;
   }
-  
-  @keyframes gradient-shift {
-    0%, 100% { 
-      background-position: 0% 50%; 
-    }
-    50% { 
-      background-position: 100% 50%; 
-    }
+
+  /* Nuevo gradiente para promociones */
+  .gradient-promo {
+    background: linear-gradient(135deg, #FF6B35 0%, #FFB800 100%);
   }
-  
-  @keyframes gradient-shift-celeste {
-    0%, 100% { 
-      background-position: 0% 50%; 
-    }
-    50% { 
-      background-position: 100% 50%; 
-    }
-  }
-  
+
+  /* Efecto glass mejorado */
   .glass-effect {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
   }
-  
+
+  .glass-effect-dark {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Efectos de sombra personalizados */
   .shadow-glow {
-    box-shadow: 0 0 20px rgba(0, 102, 204, 0.2);
+    box-shadow: 0 0 20px rgba(0, 102, 204, 0.3);
+  }
+
+  .shadow-glow-hover {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .shadow-glow-hover:hover {
+    box-shadow: 0 0 30px rgba(0, 102, 204, 0.4);
+  }
+
+  /* Hover effects para cards */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+
+  /* Animaciones */
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes gradient-shift-celeste {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    33% {
+      background-position: 100% 50%;
+    }
+    66% {
+      background-position: 50% 100%;
+    }
+  }
+
+  /* Scroll behavior suave */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Mejora de legibilidad */
+  .text-rendering-optimized {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 

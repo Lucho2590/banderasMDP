@@ -1,22 +1,43 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X, Phone, MessageCircle, Flag } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   const navItems = [
     { href: "/", label: "Inicio" },
     { href: "/productos", label: "Productos" },
-    { href: "/clientes", label: "Clientes" },
     { href: "/promociones", label: "Promociones" },
     { href: "/contacto", label: "Contacto" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-brand-border bg-brand-bg-primary/95 backdrop-blur-xl shadow-sm">
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
+        scrolled
+          ? "border-brand-border bg-brand-bg-primary/95 backdrop-blur-xl shadow-lg"
+          : "border-transparent bg-brand-bg-primary/80 backdrop-blur-md shadow-sm"
+      }`}
+    >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
@@ -35,35 +56,38 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="relative px-4 py-2 text-sm font-medium text-brand-text-secondary hover:text-brand-accent transition-colors group"
-              >
-                {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent group-hover:w-full transition-all duration-300"></span>
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors group ${
+                    isActive
+                      ? "text-brand-accent"
+                      : "text-brand-text-secondary hover:text-brand-accent"
+                  }`}
+                >
+                  {item.label}
+                  <motion.span
+                    className="absolute bottom-0 left-0 h-0.5 bg-brand-accent"
+                    initial={{ width: isActive ? "100%" : "0%" }}
+                    whileHover={{ width: "100%" }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* Contact Buttons */}
-          <div className="hidden lg:flex items-center space-x-3">
+          {/* Contact Button */}
+          <div className="hidden lg:flex items-center">
             <a
               href="tel:2234739600"
               className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-brand-text-secondary hover:text-brand-accent transition-colors rounded-lg hover:bg-brand-bg-secondary"
             >
               <Phone className="h-4 w-4" />
               <span className="hidden xl:inline">223-473 9600</span>
-            </a>
-            <a
-              href="https://wa.me/542235416600"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-2 bg-brand-accent text-white px-5 py-2.5 rounded-lg hover:bg-brand-accent-hover transition-all shadow-md hover:shadow-lg hover:scale-105 font-medium"
-            >
-              <MessageCircle className="h-4 w-4" />
-              <span>WhatsApp</span>
             </a>
           </div>
 
@@ -82,42 +106,59 @@ export default function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <nav className="lg:hidden py-6 border-t border-brand-border animate-in slide-in-from-top-2">
-            <div className="flex flex-col space-y-3">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="px-4 py-3 text-base font-medium text-brand-text-secondary hover:text-brand-accent hover:bg-brand-bg-secondary rounded-lg transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.nav
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="lg:hidden overflow-hidden border-t border-brand-border"
+            >
+              <div className="flex flex-col space-y-3 py-6">
+                {navItems.map((item, index) => {
+                  const isActive = pathname === item.href;
+                  return (
+                    <motion.div
+                      key={item.href}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <Link
+                        href={item.href}
+                        className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
+                          isActive
+                            ? "text-brand-accent bg-brand-accent/10"
+                            : "text-brand-text-secondary hover:text-brand-accent hover:bg-brand-bg-secondary"
+                        }`}
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: navItems.length * 0.1 }}
+                  className="pt-4 border-t border-brand-border"
                 >
-                  {item.label}
-                </Link>
-              ))}
-              <div className="flex flex-col space-y-2 pt-4 border-t border-brand-border">
-                <a
-                  href="tel:2234739600"
-                  className="flex items-center space-x-3 px-4 py-3 text-base font-medium text-brand-text-secondary hover:text-brand-accent hover:bg-brand-bg-secondary rounded-lg transition-colors"
-                >
-                  <Phone className="h-5 w-5" />
-                  <span>223-473 9600</span>
-                </a>
-                <a
-                  href="https://wa.me/542235416600"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center space-x-2 bg-brand-accent text-white px-4 py-3 rounded-lg hover:bg-brand-accent-hover transition-all font-medium shadow-md"
-                >
-                  <MessageCircle className="h-5 w-5" />
-                  <span>WhatsApp</span>
-                </a>
+                  <a
+                    href="tel:2234739600"
+                    className="flex items-center space-x-3 px-4 py-3 text-base font-medium text-brand-text-secondary hover:text-brand-accent hover:bg-brand-bg-secondary rounded-lg transition-colors"
+                  >
+                    <Phone className="h-5 w-5" />
+                    <span>223-473 9600</span>
+                  </a>
+                </motion.div>
               </div>
-            </div>
-          </nav>
-        )}
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   );
 }
 

@@ -1,152 +1,149 @@
+"use client";
+
 import Link from "next/link";
-import { Facebook, Instagram, MapPin, Phone, MessageCircle, Flag } from "lucide-react";
+import { Facebook, Instagram, MapPin, Phone, MessageCircle, Mail } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-gradient-to-b from-brand-bg-primary to-brand-bg-secondary border-t border-brand-border">
-      <div className="container mx-auto px-4 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Logo y Descripción */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center space-x-3 mb-6 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-brand-accent/10 blur-xl rounded-full group-hover:bg-brand-accent/20 transition-colors"></div>
-                <Flag className="h-8 w-8 text-brand-accent relative z-10 group-hover:scale-110 transition-transform" />
+    <footer className="relative bg-brand-text-primary overflow-hidden">
+      {/* Patrón de fondo sutil */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50"></div>
+
+      <div className="container mx-auto px-4 lg:px-8 py-12 relative z-10">
+        {/* Top Section - Compacta */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          {/* Columna 1: Brand + Contacto */}
+          <div className="text-center md:text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-2xl font-bold text-white mb-2">Banderas MDP</h3>
+              <p className="text-brand-accent text-sm mb-4">Mar del Plata</p>
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                Fabricamos banderas y productos personalizados de la más alta calidad desde hace más de 15 años.
+              </p>
+
+              {/* Contacto directo */}
+              <div className="space-y-2">
+                <a
+                  href="tel:2234739600"
+                  className="flex items-center justify-center md:justify-start space-x-2 text-gray-300 hover:text-brand-accent transition-colors group"
+                >
+                  <Phone className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                  <span className="text-sm">223-473 9600</span>
+                </a>
+                <a
+                  href="mailto:info@banderasmardelplata.com.ar"
+                  className="flex items-center justify-center md:justify-start space-x-2 text-gray-300 hover:text-brand-accent transition-colors group"
+                >
+                  <Mail className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                  <span className="text-sm">info@banderasmardelplata.com.ar</span>
+                </a>
               </div>
-              <div>
-                <div className="text-xl font-bold text-brand-accent">
-                  Banderas MDP
-                </div>
-                <div className="text-xs text-brand-text-secondary -mt-1">Mar del Plata</div>
-              </div>
-            </Link>
-            <p className="text-sm text-brand-text-secondary leading-relaxed">
-              Tu mejor opción en banderas y productos personalizados en Mar del Plata. Calidad, diseño y atención profesional.
-            </p>
+            </motion.div>
           </div>
 
-          {/* Páginas */}
-          <div>
-            <h3 className="font-bold text-lg mb-6 text-brand-text-primary">Páginas</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/" className="text-sm text-brand-text-secondary hover:text-brand-accent transition-colors flex items-center group">
-                  <span className="w-0 group-hover:w-2 h-0.5 bg-brand-accent mr-0 group-hover:mr-2 transition-all"></span>
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link href="/productos" className="text-sm text-brand-text-secondary hover:text-brand-accent transition-colors flex items-center group">
-                  <span className="w-0 group-hover:w-2 h-0.5 bg-brand-accent mr-0 group-hover:mr-2 transition-all"></span>
-                  Productos
-                </Link>
-              </li>
-              <li>
-                <Link href="/clientes" className="text-sm text-brand-text-secondary hover:text-brand-accent transition-colors flex items-center group">
-                  <span className="w-0 group-hover:w-2 h-0.5 bg-brand-accent mr-0 group-hover:mr-2 transition-all"></span>
-                  Clientes
-                </Link>
-              </li>
-              <li>
-                <Link href="/promociones" className="text-sm text-brand-text-secondary hover:text-brand-accent transition-colors flex items-center group">
-                  <span className="w-0 group-hover:w-2 h-0.5 bg-brand-accent mr-0 group-hover:mr-2 transition-all"></span>
-                  Promociones
-                </Link>
-              </li>
-              <li>
-                <Link href="/contacto" className="text-sm text-brand-text-secondary hover:text-brand-accent transition-colors flex items-center group">
-                  <span className="w-0 group-hover:w-2 h-0.5 bg-brand-accent mr-0 group-hover:mr-2 transition-all"></span>
-                  Contacto
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Redes Sociales */}
-          <div>
-            <h3 className="font-bold text-lg mb-6 text-brand-text-primary">Redes Sociales</h3>
-            <p className="text-sm text-brand-text-secondary mb-6 leading-relaxed">
-              Seguinos en las redes y enterate de las últimas noticias y promociones.
-            </p>
-            <div className="flex space-x-4">
+          {/* Columna 2: Ubicación + Redes */}
+          <div className="text-center md:text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <h4 className="text-white font-semibold mb-3">Visitanos</h4>
               <a
-                href="https://www.facebook.com"
+                href="https://www.google.com/maps/search/?api=1&query=San+Lorenzo+3145,+Mar+del+Plata,+Buenos+Aires,+Argentina"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-brand-accent/10 hover:bg-brand-accent/20 flex items-center justify-center text-brand-accent hover:scale-110 transition-all"
-                aria-label="Facebook"
+                className="flex items-start justify-center md:justify-start space-x-2 mb-6 group cursor-pointer"
               >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-brand-accent/10 hover:bg-brand-accent/20 flex items-center justify-center text-brand-accent hover:scale-110 transition-all"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-            </div>
-          </div>
-
-          {/* Dónde Estamos */}
-          <div>
-            <h3 className="font-bold text-lg mb-6 text-brand-text-primary">Dónde Estamos</h3>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-brand-accent flex items-center justify-center">
-                  <MapPin className="h-5 w-5 text-white" />
-                </div>
-                <div className="text-sm">
-                  <p className="font-medium mb-1 text-brand-text-primary">Dirección</p>
-                  <p className="text-brand-text-secondary">
-                    San Lorenzo 3145<br />
-                    Mar del Plata
+                <MapPin className="h-4 w-4 text-brand-accent flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                <div className="text-left">
+                  <p className="text-gray-400 text-sm group-hover:text-brand-accent transition-colors">
+                    San Lorenzo 3145, Mar del Plata
+                  </p>
+                  <p className="text-gray-500 text-xs group-hover:text-brand-accent transition-colors">
+                    Ver en Google Maps →
                   </p>
                 </div>
+              </a>
+
+              <h4 className="text-white font-semibold mb-3">Seguinos</h4>
+              <div className="flex space-x-3 justify-center md:justify-start">
+                <motion.a
+                  href="https://www.facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="w-9 h-9 rounded-lg bg-white/10 hover:bg-brand-accent flex items-center justify-center text-white transition-all"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="h-4 w-4" />
+                </motion.a>
+                <motion.a
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="w-9 h-9 rounded-lg bg-white/10 hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 flex items-center justify-center text-white transition-all"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="h-4 w-4" />
+                </motion.a>
               </div>
-              <div className="flex items-center space-x-3">
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-brand-accent flex items-center justify-center">
-                  <Phone className="h-5 w-5 text-white" />
-                </div>
-                <div className="text-sm">
-                  <p className="font-medium mb-1 text-brand-text-primary">Teléfono</p>
-                  <a href="tel:2234739600" className="text-brand-text-secondary hover:text-brand-accent transition-colors">
-                    223-473 9600 Rot.
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-brand-accent flex items-center justify-center">
-                  <MessageCircle className="h-5 w-5 text-white" />
-                </div>
-                <div className="text-sm">
-                  <p className="font-medium mb-1 text-brand-text-primary">WhatsApp</p>
-                  <a
-                    href="https://wa.me/542235416600"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-brand-text-secondary hover:text-brand-accent transition-colors"
-                  >
-                    223-541 6600
-                  </a>
-                </div>
-              </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-brand-border">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-brand-text-secondary text-center md:text-left">
-              © 2024 Banderas Mar del Plata. Todos los derechos reservados.
+        {/* Enlaces horizontales */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8 pb-8 border-b border-gray-800"
+        >
+          {[
+            { href: "/", label: "Inicio" },
+            { href: "/productos", label: "Productos" },
+            { href: "/promociones", label: "Promociones" },
+            { href: "/contacto", label: "Contacto" },
+          ].map((link, index) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-gray-400 hover:text-brand-accent transition-colors text-sm"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </motion.div>
+
+        {/* Bottom - Copyright */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="pt-8 border-t border-gray-800"
+        >
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 text-center md:text-left">
+            <p className="text-xs text-gray-500">
+              © {new Date().getFullYear()} Banderas Mar del Plata. Todos los derechos reservados.
             </p>
-            <p className="text-sm text-brand-text-secondary text-center md:text-right">
-              Diseñado por <span className="text-brand-accent font-medium">OG comunicación y diseño</span>
+            <p className="text-xs text-gray-500">
+              Diseñado por{" "}
+              <span className="text-brand-accent hover:text-brand-accent-hover transition-colors">
+                OG comunicación y diseño
+              </span>
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
