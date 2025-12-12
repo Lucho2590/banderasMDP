@@ -14,46 +14,100 @@ const config: Config = {
         serif: ['var(--font-playfair)', 'serif'],
       },
       colors: {
-        // Brand colors - Sistema de diseño BanderasMDP (Mejorado)
+        // Brand colors - Sistema de diseño BanderasMDP (Paleta Bandera Argentina 🇦🇷)
         brand: {
           bg: {
             primary: "#FFFFFF",
-            secondary: "#F9FAFB",
-            tertiary: "#F3F4F6",
+            secondary: "#ecf4f9", // sky-reflection-50
+            tertiary: "#d8e9f3", // sky-reflection-100
           },
           text: {
-            primary: "#111827",
-            secondary: "#6B7280",
-            tertiary: "#9CA3AF",
-          },
-          accent: {
-            50: "#E6F2FF",
-            100: "#CCE5FF",
-            200: "#99CCFF",
-            300: "#66B3FF",
-            400: "#3399FF",
-            500: "#0066CC", // Color principal
-            600: "#0052A3",
-            700: "#003D7A",
-            800: "#002952",
-            900: "#001429",
-            DEFAULT: "#0066CC",
-            hover: "#0052A3",
+            primary: "#243742", // charcoal-blue-800
+            secondary: "#5988a6", // charcoal-blue-500
+            tertiary: "#7aa0b8", // charcoal-blue-400
           },
           border: {
-            DEFAULT: "#E5E7EB",
-            light: "#F3F4F6",
-            dark: "#D1D5DB",
+            DEFAULT: "#b2d4e6", // sky-reflection-200
+            light: "#d8e9f3", // sky-reflection-100
+            dark: "#8bbeda", // sky-reflection-300
           },
-          // Acentos complementarios para CTAs y promociones
-          orange: {
-            DEFAULT: "#FF6B35",
-            hover: "#E55A2B",
-          },
-          yellow: {
-            DEFAULT: "#FFB800",
-            hover: "#E6A600",
-          },
+        },
+        // Celeste Argentino - Reflejo del Cielo (Color Principal)
+        "sky-reflection": {
+          50: "#ecf4f9",
+          100: "#d8e9f3",
+          200: "#b2d4e6",
+          300: "#8bbeda",
+          400: "#65a9cd",
+          500: "#3e93c1", // Color principal celeste argentino
+          600: "#32769a",
+          700: "#255874",
+          800: "#193b4d",
+          900: "#0c1d27",
+          950: "#09151b",
+          DEFAULT: "#3e93c1",
+          hover: "#32769a",
+        },
+        // Azul Báltico - Para contraste y elementos importantes
+        "baltic-blue": {
+          50: "#ecf2f9",
+          100: "#d9e6f2",
+          200: "#b3cce6",
+          300: "#8cb2d9",
+          400: "#6699cc",
+          500: "#407fbf",
+          600: "#336699",
+          700: "#264c73",
+          800: "#19334d",
+          900: "#0d1926",
+          950: "#09121b",
+          DEFAULT: "#336699",
+          hover: "#264c73",
+        },
+        // Carbón Azulado - Para textos y neutrales
+        "charcoal-blue": {
+          50: "#eef3f6",
+          100: "#dee7ed",
+          200: "#bdd0db",
+          300: "#9cb8c9",
+          400: "#7aa0b8",
+          500: "#5988a6",
+          600: "#476d85",
+          700: "#365263",
+          800: "#243742",
+          900: "#121b21",
+          950: "#0c1317",
+          DEFAULT: "#243742",
+        },
+        // Sol Argentino - Acento dorado para CTAs
+        sol: {
+          50: "#FFFBEB",
+          100: "#FEF3C7",
+          200: "#FDE68A",
+          300: "#FCD34D",
+          400: "#FBBF24", // Dorado sol argentino
+          500: "#F59E0B",
+          600: "#D97706",
+          700: "#B45309",
+          800: "#92400E",
+          900: "#78350F",
+          DEFAULT: "#FBBF24",
+          hover: "#F59E0B",
+        },
+        // Alias para compatibilidad
+        accent: {
+          50: "#ecf4f9",
+          100: "#d8e9f3",
+          200: "#b2d4e6",
+          300: "#8bbeda",
+          400: "#65a9cd",
+          500: "#3e93c1",
+          600: "#32769a",
+          700: "#255874",
+          800: "#193b4d",
+          900: "#0c1d27",
+          DEFAULT: "#3e93c1",
+          hover: "#32769a",
         },
         // shadCN UI colors - Sincronizados con brand
         background: "var(--bg-primary)",

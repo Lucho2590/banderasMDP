@@ -43,11 +43,11 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="relative">
-              <div className="absolute inset-0 bg-brand-accent/10 blur-xl rounded-full group-hover:bg-brand-accent/20 transition-colors"></div>
-              <Flag className="h-8 w-8 text-brand-accent relative z-10 group-hover:scale-110 transition-transform" />
+              <div className="absolute inset-0 bg-sky-reflection/10 blur-xl rounded-full group-hover:bg-sky-reflection/20 transition-colors"></div>
+              <Flag className="h-8 w-8 text-sky-reflection relative z-10 group-hover:scale-110 transition-transform" />
             </div>
             <div>
-              <div className="text-2xl font-bold text-brand-accent">
+              <div className="text-2xl font-bold text-sky-reflection-600">
                 Banderas MDP
               </div>
               <div className="text-xs text-brand-text-secondary -mt-1">Mar del Plata</div>
@@ -64,13 +64,13 @@ export default function Header() {
                   href={item.href}
                   className={`relative px-4 py-2 text-sm font-medium transition-colors group ${
                     isActive
-                      ? "text-brand-accent"
-                      : "text-brand-text-secondary hover:text-brand-accent"
+                      ? "text-sky-reflection-600"
+                      : "text-brand-text-secondary hover:text-sky-reflection-600"
                   }`}
                 >
                   {item.label}
                   <motion.span
-                    className="absolute bottom-0 left-0 h-0.5 bg-brand-accent"
+                    className="absolute bottom-0 left-0 h-0.5 bg-sky-reflection"
                     initial={{ width: isActive ? "100%" : "0%" }}
                     whileHover={{ width: "100%" }}
                     transition={{ duration: 0.3 }}
@@ -84,7 +84,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center">
             <a
               href="tel:2234739600"
-              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-brand-text-secondary hover:text-brand-accent transition-colors rounded-lg hover:bg-brand-bg-secondary"
+              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-brand-text-secondary hover:text-sky-reflection-600 transition-colors rounded-lg hover:bg-brand-bg-secondary"
             >
               <Phone className="h-4 w-4" />
               <span className="hidden xl:inline">223-473 9600</span>
@@ -129,8 +129,8 @@ export default function Header() {
                         href={item.href}
                         className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
                           isActive
-                            ? "text-brand-accent bg-brand-accent/10"
-                            : "text-brand-text-secondary hover:text-brand-accent hover:bg-brand-bg-secondary"
+                            ? "text-sky-reflection-600 bg-sky-reflection/10"
+                            : "text-brand-text-secondary hover:text-sky-reflection-600 hover:bg-brand-bg-secondary"
                         }`}
                         onClick={() => setIsMenuOpen(false)}
                       >
@@ -147,7 +147,7 @@ export default function Header() {
                 >
                   <a
                     href="tel:2234739600"
-                    className="flex items-center space-x-3 px-4 py-3 text-base font-medium text-brand-text-secondary hover:text-brand-accent hover:bg-brand-bg-secondary rounded-lg transition-colors"
+                    className="flex items-center space-x-3 px-4 py-3 text-base font-medium text-brand-text-secondary hover:text-sky-reflection-600 hover:bg-brand-bg-secondary rounded-lg transition-colors"
                   >
                     <Phone className="h-5 w-5" />
                     <span>223-473 9600</span>

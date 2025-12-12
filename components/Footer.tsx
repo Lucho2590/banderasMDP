@@ -22,7 +22,7 @@ export default function Footer() {
               transition={{ duration: 0.6 }}
             >
               <h3 className="text-2xl font-bold text-white mb-2">Banderas MDP</h3>
-              <p className="text-brand-accent text-sm mb-4">Mar del Plata</p>
+              <p className="text-sky-reflection-400 text-sm mb-4">Mar del Plata</p>
               <p className="text-gray-400 text-sm leading-relaxed mb-6">
                 Fabricamos banderas y productos personalizados de la más alta calidad desde hace más de 15 años.
               </p>
@@ -31,14 +31,14 @@ export default function Footer() {
               <div className="space-y-2">
                 <a
                   href="tel:2234739600"
-                  className="flex items-center justify-center md:justify-start space-x-2 text-gray-300 hover:text-brand-accent transition-colors group"
+                  className="flex items-center justify-center md:justify-start space-x-2 text-gray-300 hover:text-sky-reflection-400 transition-colors group"
                 >
                   <Phone className="h-4 w-4 group-hover:scale-110 transition-transform" />
                   <span className="text-sm">223-473 9600</span>
                 </a>
                 <a
                   href="mailto:info@banderasmardelplata.com.ar"
-                  className="flex items-center justify-center md:justify-start space-x-2 text-gray-300 hover:text-brand-accent transition-colors group"
+                  className="flex items-center justify-center md:justify-start space-x-2 text-gray-300 hover:text-sky-reflection-400 transition-colors group"
                 >
                   <Mail className="h-4 w-4 group-hover:scale-110 transition-transform" />
                   <span className="text-sm">info@banderasmardelplata.com.ar</span>
@@ -62,12 +62,12 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="flex items-start justify-center md:justify-start space-x-2 mb-6 group cursor-pointer"
               >
-                <MapPin className="h-4 w-4 text-brand-accent flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                <MapPin className="h-4 w-4 text-sky-reflection-400 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
                 <div className="text-left">
-                  <p className="text-gray-400 text-sm group-hover:text-brand-accent transition-colors">
+                  <p className="text-gray-400 text-sm group-hover:text-sky-reflection-400 transition-colors">
                     San Lorenzo 3145, Mar del Plata
                   </p>
-                  <p className="text-gray-500 text-xs group-hover:text-brand-accent transition-colors">
+                  <p className="text-gray-500 text-xs group-hover:text-sky-reflection-400 transition-colors">
                     Ver en Google Maps →
                   </p>
                 </div>
@@ -80,7 +80,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
-                  className="w-9 h-9 rounded-lg bg-white/10 hover:bg-brand-accent flex items-center justify-center text-white transition-all"
+                  className="w-9 h-9 rounded-lg bg-white/10 hover:bg-sky-reflection flex items-center justify-center text-white transition-all"
                   aria-label="Facebook"
                 >
                   <Facebook className="h-4 w-4" />
@@ -117,7 +117,7 @@ export default function Footer() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-gray-400 hover:text-brand-accent transition-colors text-sm"
+              className="text-gray-400 hover:text-sky-reflection-400 transition-colors text-sm"
             >
               {link.label}
             </Link>
@@ -138,7 +138,7 @@ export default function Footer() {
             </p>
             <p className="text-xs text-gray-500">
               Diseñado por{" "}
-              <span className="text-brand-accent hover:text-brand-accent-hover transition-colors">
+              <span className="text-sky-reflection-400 hover:text-sky-reflection-300 transition-colors">
                 OG comunicación y diseño
               </span>
             </p>

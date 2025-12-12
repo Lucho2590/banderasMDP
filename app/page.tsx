@@ -88,17 +88,17 @@ export default function Home() {
             >
               <Link
                 href="/productos"
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-brand-bg-primary text-brand-accent rounded-xl hover:bg-brand-bg-secondary transition-all shadow-xl hover:shadow-2xl hover:scale-105 font-semibold text-lg overflow-hidden"
+                className="group relative inline-flex items-center justify-center px-8 py-4 bg-sol text-white rounded-xl hover:bg-sol-hover transition-all shadow-xl hover:shadow-2xl hover:scale-105 font-semibold text-lg overflow-hidden shadow-glow-sol"
               >
                 <span className="relative z-10 flex items-center">
                   Ver Productos
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-brand-accent-500/0 via-brand-accent-500/10 to-brand-accent-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
               </Link>
               <Link
                 href="/contacto"
-                className="group inline-flex items-center justify-center px-8 py-4 glass-effect text-white border-2 border-white/30 rounded-xl hover:bg-white/20 hover:border-white/50 transition-all font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105"
+                className="group inline-flex items-center justify-center px-8 py-4 glass-effect text-white border-2 border-white/40 rounded-xl hover:bg-white/25 hover:border-white/60 transition-all font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Contactanos
               </Link>
@@ -167,7 +167,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 bg-gradient-to-b from-brand-bg-primary to-brand-bg-secondary">
+      <section className="py-28 bg-gradient-to-b from-brand-bg-primary to-brand-bg-secondary">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -213,7 +213,7 @@ export default function Home() {
                   transition={{ duration: 0.6, delay: feature.delay }}
                   className="group relative"
                 >
-                  <div className="absolute inset-0 bg-brand-accent/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-sky-reflection/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <motion.div
                     whileHover={{ y: -8 }}
                     transition={{ type: "spring", stiffness: 300 }}
@@ -222,11 +222,11 @@ export default function Home() {
                     <motion.div
                       whileHover={{ rotate: [0, -10, 10, -10, 0] }}
                       transition={{ duration: 0.5 }}
-                      className="w-16 h-16 rounded-xl bg-brand-accent flex items-center justify-center mb-6 shadow-md group-hover:shadow-glow transition-shadow"
+                      className="w-16 h-16 rounded-xl bg-sky-reflection flex items-center justify-center mb-6 shadow-md group-hover:shadow-glow transition-shadow"
                     >
                       <Icon className="h-8 w-8 text-white" />
                     </motion.div>
-                    <h3 className="text-2xl font-bold mb-4 text-brand-text-primary group-hover:text-brand-accent transition-colors">
+                    <h3 className="text-2xl font-bold mb-4 text-brand-text-primary group-hover:text-sky-reflection-600 transition-colors">
                       {feature.title}
                     </h3>
                     <p className="text-brand-text-secondary leading-relaxed">
@@ -241,7 +241,7 @@ export default function Home() {
       </section>
 
       {/* Banner de Promoción */}
-      <section className="py-16 relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 gradient-promo"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyIi8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
 
@@ -287,7 +287,7 @@ export default function Home() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
-                    className="inline-flex items-center space-x-2 px-4 py-2 bg-brand-yellow rounded-full mb-6"
+                    className="inline-flex items-center space-x-2 px-4 py-2 bg-sol rounded-full mb-6 shadow-glow-sol"
                   >
                     <Sparkles className="h-4 w-4 text-white" />
                     <span className="text-sm font-bold text-white">OFERTA ESPECIAL</span>
@@ -321,7 +321,7 @@ export default function Home() {
                   >
                     <Link
                       href="/contacto"
-                      className="group inline-flex items-center justify-center px-8 py-4 bg-white text-brand-orange rounded-xl hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl hover:scale-105 font-bold text-lg"
+                      className="group inline-flex items-center justify-center px-8 py-4 bg-white text-sky-reflection-700 rounded-xl hover:bg-sky-reflection-50 transition-all shadow-xl hover:shadow-2xl hover:scale-105 font-bold text-lg"
                     >
                       Consultar ahora
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -353,7 +353,7 @@ export default function Home() {
                       className="w-64 h-64 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center shadow-2xl overflow-hidden relative"
                     >
                       {/* Placeholder para imagen - reemplazar con <img> cuando tengas Firebase */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-brand-orange/30 to-brand-yellow/30"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-sky-reflection-400/40 to-sol/40"></div>
                       <div className="text-center relative z-10">
                         <div className="text-7xl font-bold text-white mb-2">20%</div>
                         <div className="text-xl text-white/90 font-semibold">DESCUENTO</div>
@@ -366,7 +366,7 @@ export default function Home() {
                         repeat: Infinity,
                         ease: "linear",
                       }}
-                      className="absolute -top-4 -right-4 w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center shadow-lg"
+                      className="absolute -top-4 -right-4 w-16 h-16 bg-sol rounded-full flex items-center justify-center shadow-lg shadow-glow-sol"
                     >
                       <Sparkles className="h-8 w-8 text-white" />
                     </motion.div>
@@ -379,7 +379,7 @@ export default function Home() {
       </section>
 
       {/* Clientes Section */}
-      <section className="py-20 bg-brand-bg-secondary overflow-hidden">
+      <section className="py-24 bg-brand-bg-secondary overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -422,9 +422,9 @@ export default function Home() {
                     className="flex-shrink-0 w-48 h-32 bg-white rounded-xl shadow-md flex items-center justify-center border border-brand-border hover:shadow-xl transition-shadow group"
                   >
                     <div className="text-center">
-                      <div className="w-32 h-20 bg-gradient-to-br from-brand-accent/10 to-brand-accent/5 rounded-lg flex items-center justify-center mb-2 group-hover:from-brand-accent/20 group-hover:to-brand-accent/10 transition-colors">
+                      <div className="w-32 h-20 bg-gradient-to-br from-sky-reflection/10 to-sky-reflection/5 rounded-lg flex items-center justify-center mb-2 group-hover:from-sky-reflection/20 group-hover:to-sky-reflection/10 transition-colors">
                         {/* Placeholder para logo - reemplazar con <img> cuando tengas Firebase */}
-                        <CheckCircle2 className="h-10 w-10 text-brand-accent" />
+                        <CheckCircle2 className="h-10 w-10 text-sky-reflection" />
                       </div>
                       <span className="text-xs text-brand-text-secondary font-medium">
                         Cliente {index + 1}
@@ -439,8 +439,8 @@ export default function Home() {
                     className="flex-shrink-0 w-48 h-32 bg-white rounded-xl shadow-md flex items-center justify-center border border-brand-border hover:shadow-xl transition-shadow group"
                   >
                     <div className="text-center">
-                      <div className="w-32 h-20 bg-gradient-to-br from-brand-accent/10 to-brand-accent/5 rounded-lg flex items-center justify-center mb-2 group-hover:from-brand-accent/20 group-hover:to-brand-accent/10 transition-colors">
-                        <CheckCircle2 className="h-10 w-10 text-brand-accent" />
+                      <div className="w-32 h-20 bg-gradient-to-br from-sky-reflection/10 to-sky-reflection/5 rounded-lg flex items-center justify-center mb-2 group-hover:from-sky-reflection/20 group-hover:to-sky-reflection/10 transition-colors">
+                        <CheckCircle2 className="h-10 w-10 text-sky-reflection" />
                       </div>
                       <span className="text-xs text-brand-text-secondary font-medium">
                         Cliente {index + 1}

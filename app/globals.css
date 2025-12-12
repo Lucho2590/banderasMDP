@@ -4,19 +4,24 @@
 
 @layer base {
   :root {
-    /* Sistema de diseño BanderasMDP - Variables base mejoradas */
+    /* Sistema de diseño BanderasMDP - Paleta Bandera Argentina 🇦🇷 */
     --bg-primary: #FFFFFF;
-    --bg-secondary: #F9FAFB;
-    --bg-tertiary: #F3F4F6;
-    --text-primary: #111827;
-    --text-secondary: #6B7280;
-    --text-tertiary: #9CA3AF;
-    --accent-primary: #0066CC;
-    --accent-hover: #0052A3;
-    --border-color: #E5E7EB;
-    --border-light: #F3F4F6;
-    --border-dark: #D1D5DB;
-    
+    --bg-secondary: #ecf4f9; /* sky-reflection-50 */
+    --bg-tertiary: #d8e9f3; /* sky-reflection-100 */
+    --text-primary: #243742; /* charcoal-blue-800 */
+    --text-secondary: #5988a6; /* charcoal-blue-500 */
+    --text-tertiary: #7aa0b8; /* charcoal-blue-400 */
+    --accent-primary: #3e93c1; /* sky-reflection-500 - Celeste argentino */
+    --accent-hover: #32769a; /* sky-reflection-600 */
+    --accent-deep: #255874; /* sky-reflection-700 */
+    --border-color: #b2d4e6; /* sky-reflection-200 */
+    --border-light: #d8e9f3; /* sky-reflection-100 */
+    --border-dark: #8bbeda; /* sky-reflection-300 */
+    --sol-primary: #FBBF24; /* Sol argentino - dorado */
+    --sol-hover: #F59E0B;
+    --baltic-primary: #336699; /* baltic-blue-600 */
+    --baltic-hover: #264c73; /* baltic-blue-700 */
+
     /* shadCN UI - Sincronizado con brand colors */
     --background: var(--bg-primary);
     --foreground: var(--text-primary);
@@ -38,7 +43,7 @@
     --input: var(--border-color);
     --ring: var(--accent-primary);
     --radius: 0.75rem;
-    
+
     /* Chart colors (mantenidos para compatibilidad) */
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
@@ -68,47 +73,64 @@
     text-wrap: balance;
   }
 
-  /* Gradientes mejorados */
+  /* Gradientes mejorados - Bandera Argentina 🇦🇷 */
   .gradient-primary {
     background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-hover) 100%);
   }
 
   .gradient-hero {
-    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-hover) 50%, var(--accent-primary) 100%);
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--baltic-primary) 50%, var(--accent-primary) 100%);
     background-size: 200% 200%;
     animation: gradient-shift 8s ease infinite;
   }
 
-  /* Gradiente celeste y blanco animado mejorado */
+  /* Gradiente celeste argentino animado - Hero principal */
   .gradient-celeste-blanco {
-    background: linear-gradient(135deg, #66B3FF 0%, #3399FF 25%, #0066CC 50%, #3399FF 75%, #66B3FF 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #d8e9f3 15%, #65a9cd 40%, #3e93c1 60%, #32769a 80%, #255874 100%);
     background-size: 400% 400%;
     animation: gradient-shift-celeste 15s ease infinite;
   }
 
-  /* Nuevo gradiente para promociones */
-  .gradient-promo {
-    background: linear-gradient(135deg, #FF6B35 0%, #FFB800 100%);
+  /* Gradiente argentino alternativo - Celeste suave */
+  .gradient-celeste-suave {
+    background: linear-gradient(135deg, #ecf4f9 0%, #b2d4e6 50%, #65a9cd 100%);
   }
 
-  /* Efecto glass mejorado */
+  /* Gradiente para promociones - Sol argentino */
+  .gradient-promo {
+    background: linear-gradient(135deg, #3e93c1 0%, #32769a 40%, #FBBF24 100%);
+  }
+
+  /* Gradiente Baltic - Para secciones oscuras */
+  .gradient-baltic {
+    background: linear-gradient(135deg, #336699 0%, #264c73 50%, #19334d 100%);
+  }
+
+  /* Efecto glass mejorado - Tintes argentinos */
   .glass-effect {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px) saturate(180%);
     -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
   }
 
   .glass-effect-dark {
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(36, 55, 66, 0.6); /* charcoal-blue con opacidad */
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  /* Efectos de sombra personalizados */
+  .glass-effect-celeste {
+    background: rgba(62, 147, 193, 0.15); /* sky-reflection-500 con muy baja opacidad */
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(62, 147, 193, 0.3);
+  }
+
+  /* Efectos de sombra personalizados - Celeste argentino */
   .shadow-glow {
-    box-shadow: 0 0 20px rgba(0, 102, 204, 0.3);
+    box-shadow: 0 0 20px rgba(62, 147, 193, 0.3); /* sky-reflection-500 */
   }
 
   .shadow-glow-hover {
@@ -116,7 +138,11 @@
   }
 
   .shadow-glow-hover:hover {
-    box-shadow: 0 0 30px rgba(0, 102, 204, 0.4);
+    box-shadow: 0 0 30px rgba(62, 147, 193, 0.5);
+  }
+
+  .shadow-glow-sol {
+    box-shadow: 0 0 25px rgba(251, 191, 36, 0.4); /* Sol dorado */
   }
 
   /* Hover effects para cards */
