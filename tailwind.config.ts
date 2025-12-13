@@ -132,10 +132,6 @@ const config: Config = {
           DEFAULT: "var(--bg-secondary)",
           foreground: "var(--text-secondary)",
         },
-        accent: {
-          DEFAULT: "var(--accent-primary)",
-          foreground: "#FFFFFF",
-        },
         destructive: {
           DEFAULT: "#DC2626",
           foreground: "#FFFFFF",
