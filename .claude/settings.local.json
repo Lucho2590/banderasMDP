@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(npm install:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nMejoras visuales y de UX - Fase de diseño completa\n\n## Nuevas funcionalidades\n- Agregar Framer Motion para animaciones fluidas y profesionales\n- Implementar botón flotante de WhatsApp con pulso animado\n- Carousel infinito de logos de clientes en home\n- Banner de promoción con soporte para imágenes/GIF desde Firebase\n- Stats impactantes en hero section (15+ años, 500+ clientes, 100%)\n\n## Mejoras de diseño\n- Sistema de colores expandido con paleta completa (50-900)\n- Nuevas sombras profesionales (sm, md, lg, xl, 2xl, glow)\n- Animaciones CSS personalizadas (fade-in, slide-up, scale-in)\n- Gradientes mejorados con animación más fluida\n- Efectos glass mejorados con mejor backdrop-blur\n\n## Componentes actualizados\n- Header: efecto scroll con backdrop-blur, menú móvil animado, indicador de página activa\n- Footer: rediseño completo oscuro y minimalista, enlaces horizontales, link a Google Maps\n- Hero: animaciones secuenciales de entrada, elementos decorativos flotantes\n- Features: animación en scroll, iconos con rotación en hover\n- Product Cards: hover effects sofisticados, badges animados, vista rápida\n\n## Optimizaciones\n- Remover ruta /clientes del menú (ahora en home)\n- Remover botones de WhatsApp duplicados (solo flotante)\n- Copy mejorado con textos más convincentes y orientados a conversión\n- Footer compacto y mobile-friendly\n- Mejora de performance con animaciones optimizadas\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

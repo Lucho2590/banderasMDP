@@ -1,6 +1,6 @@
 "use client";
 
-import { ShoppingBag, ArrowRight, Star } from "lucide-react";
+import { ShoppingBag, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -17,7 +17,7 @@ export default function ProductosPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-brand-accent/10 via-brand-accent/5 to-brand-bg-secondary overflow-hidden">
+      <section className="relative py-20 bg-gradient-to-br from-sky-reflection/10 via-sky-reflection/5 to-brand-bg-secondary overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-30"></div>
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
@@ -30,7 +30,7 @@ export default function ProductosPage() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-brand-accent mb-6 shadow-lg"
+              className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-sky-reflection mb-6 shadow-lg shadow-glow"
             >
               <ShoppingBag className="h-10 w-10 text-white" />
             </motion.div>
@@ -54,7 +54,7 @@ export default function ProductosPage() {
         </div>
       </section>
 
-      {/* Productos Grid */}
+      {/* Categorías - Productos Grid */}
       <section className="py-20 bg-brand-bg-primary">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -68,7 +68,7 @@ export default function ProductosPage() {
                 className="group relative"
               >
                 {/* Glow effect on hover */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-brand-accent-500 to-brand-accent-700 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-sky-reflection-500 to-sky-reflection-700 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500"></div>
 
                 <motion.div
                   whileHover={{ y: -8 }}
@@ -111,7 +111,7 @@ export default function ProductosPage() {
                       whileHover={{ opacity: 1, y: 0 }}
                       className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     >
-                      <button className="px-6 py-3 bg-white text-brand-accent rounded-xl font-semibold shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                      <button className="px-6 py-3 bg-white text-sky-reflection-600 rounded-xl font-semibold shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                         Vista Rápida
                       </button>
                     </motion.div>
@@ -119,7 +119,7 @@ export default function ProductosPage() {
 
                   {/* Content */}
                   <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-brand-accent transition-colors text-brand-text-primary">
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-sky-reflection-600 transition-colors text-brand-text-primary">
                       {producto.nombre}
                     </h3>
                     <p className="text-brand-text-secondary text-sm mb-6 line-clamp-2">
@@ -128,13 +128,13 @@ export default function ProductosPage() {
 
                     <div className="flex items-center justify-between pt-4 border-t border-brand-border">
                       <div>
-                        <div className="text-2xl font-bold text-brand-accent">Consultar</div>
+                        <div className="text-2xl font-bold text-sky-reflection-600">Consultar</div>
                         <div className="text-xs text-brand-text-secondary">Precio</div>
                       </div>
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="group/btn relative flex items-center space-x-2 px-5 py-2.5 bg-brand-accent text-white rounded-xl hover:bg-brand-accent-hover shadow-md hover:shadow-xl transition-all font-semibold overflow-hidden"
+                        className="group/btn relative flex items-center space-x-2 px-5 py-2.5 bg-sky-reflection text-white rounded-xl hover:bg-sky-reflection-600 shadow-md hover:shadow-xl transition-all font-semibold overflow-hidden"
                       >
                         <span className="relative z-10">Ver más</span>
                         <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform relative z-10" />
@@ -157,7 +157,7 @@ export default function ProductosPage() {
           </p>
           <Link
             href="/contacto"
-            className="inline-flex items-center space-x-2 px-8 py-4 bg-brand-accent text-white rounded-xl hover:bg-brand-accent-hover hover:shadow-lg hover:scale-105 transition-all font-semibold"
+            className="inline-flex items-center space-x-2 px-8 py-4 bg-sky-reflection text-white rounded-xl hover:bg-sky-reflection-600 hover:shadow-lg hover:scale-105 transition-all font-semibold"
           >
             <span>Contactanos para un presupuesto personalizado</span>
             <ArrowRight className="h-5 w-5" />

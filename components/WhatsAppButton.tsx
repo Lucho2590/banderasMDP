@@ -16,7 +16,7 @@ export default function WhatsAppButton() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 2, duration: 0.5, type: "spring" }}
-        className="fixed bottom-6 right-6 z-50"
+        className="fixed bottom-20 right-5 z-50"
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
@@ -46,14 +46,14 @@ export default function WhatsAppButton() {
           <MessageCircle className="h-8 w-8 text-white relative z-10" />
 
           {/* Badge de notificación */}
-          <motion.div
+          {/* <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 2.5, type: "spring" }}
             className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center border-2 border-white"
           >
             <span className="text-white text-xs font-bold">1</span>
-          </motion.div>
+          </motion.div> */}
         </motion.a>
 
         {/* Tooltip */}

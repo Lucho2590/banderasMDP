@@ -3,16 +3,23 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, MessageCircle, Flag } from "lucide-react";
+import { Menu, X, Phone, MessageCircle, Flag, ShoppingCart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "@/context/CartContext";
+import CartDrawer from "./CartDrawer";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { getCartItemsCount } = useCart();
+
+  const cartItemsCount = getCartItemsCount();
 
   const navItems = [
     { href: "/", label: "Inicio" },
+    { href: "/tienda", label: "Tienda" },
     { href: "/productos", label: "Productos" },
     { href: "/promociones", label: "Promociones" },
     { href: "/contacto", label: "Contacto" },
@@ -71,7 +78,7 @@ export default function Header() {
                   {item.label}
                   <motion.span
                     className="absolute bottom-0 left-0 h-0.5 bg-sky-reflection"
-                    initial={{ width: isActive ? "100%" : "0%" }}
+                    animate={{ width: isActive ? "100%" : "0%" }}
                     whileHover={{ width: "100%" }}
                     transition={{ duration: 0.3 }}
                   />
@@ -81,7 +88,7 @@ export default function Header() {
           </nav>
 
           {/* Contact Button */}
-          <div className="hidden lg:flex items-center">
+          <div className="hidden lg:flex items-center space-x-2">
             <a
               href="tel:2234739600"
               className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-brand-text-secondary hover:text-sky-reflection-600 transition-colors rounded-lg hover:bg-brand-bg-secondary"
@@ -89,20 +96,59 @@ export default function Header() {
               <Phone className="h-4 w-4" />
               <span className="hidden xl:inline">223-473 9600</span>
             </a>
+
+            {/* Cart Button */}
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2 rounded-lg hover:bg-brand-bg-secondary transition-colors"
+              aria-label="Carrito de compras"
+            >
+              <ShoppingCart className="h-5 w-5 text-brand-text-secondary" />
+              {cartItemsCount > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute -top-1 -right-1 w-5 h-5 bg-sol text-white rounded-full flex items-center justify-center text-xs font-bold"
+                >
+                  {cartItemsCount}
+                </motion.span>
+              )}
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 rounded-lg hover:bg-brand-bg-secondary transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </button>
+          {/* Mobile Cart & Menu Buttons */}
+          <div className="flex lg:hidden items-center space-x-2">
+            {/* Mobile Cart Button */}
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2 rounded-lg hover:bg-brand-bg-secondary transition-colors"
+              aria-label="Carrito de compras"
+            >
+              <ShoppingCart className="h-5 w-5 text-brand-text-secondary" />
+              {cartItemsCount > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute -top-1 -right-1 w-5 h-5 bg-sol text-white rounded-full flex items-center justify-center text-xs font-bold"
+                >
+                  {cartItemsCount}
+                </motion.span>
+              )}
+            </button>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="lg:hidden p-2 rounded-lg hover:bg-brand-bg-secondary transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -158,6 +204,9 @@ export default function Header() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Cart Drawer */}
+      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </motion.header>
   );
 }

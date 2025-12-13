@@ -94,11 +94,11 @@ export default function Home() {
                   Ver Productos
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-black/0 via-black/20 to-black/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
               </Link>
               <Link
                 href="/contacto"
-                className="group inline-flex items-center justify-center px-8 py-4 glass-effect text-white border-2 border-white/40 rounded-xl hover:bg-white/25 hover:border-white/60 transition-all font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105"
+                className="group inline-flex items-center justify-center px-8 py-4 glass-effect text-black border-2 border-black/40 rounded-xl hover:bg-black/25 hover:border-black/60 transition-all font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Contactanos
               </Link>
@@ -112,7 +112,7 @@ export default function Home() {
               className="grid grid-cols-3 gap-8 max-w-3xl mx-auto"
             >
               {[
-                { number: "15+", label: "Años de experiencia" },
+                { number: "40+", label: "Años de experiencia" },
                 { number: "500+", label: "Clientes satisfechos" },
                 { number: "100%", label: "Calidad garantizada" },
               ].map((stat, index) => (
@@ -124,10 +124,10 @@ export default function Home() {
                   className="text-center"
                 >
                   <div className="glass-effect rounded-2xl p-6 border border-white/30">
-                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                    <div className="text-3xl md:text-4xl font-bold text-black mb-2">
                       {stat.number}
                     </div>
-                    <div className="text-sm md:text-base text-white/80 font-medium">
+                    <div className="text-sm md:text-base text-black/80 font-medium">
                       {stat.label}
                     </div>
                   </div>

@@ -24,7 +24,7 @@ export default function Footer() {
               <h3 className="text-2xl font-bold text-white mb-2">Banderas MDP</h3>
               <p className="text-sky-reflection-400 text-sm mb-4">Mar del Plata</p>
               <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                Fabricamos banderas y productos personalizados de la más alta calidad desde hace más de 15 años.
+                Fabricamos banderas y productos personalizados de la más alta calidad desde hace más de 40 años.
               </p>
 
               {/* Contacto directo */}
@@ -41,7 +41,7 @@ export default function Footer() {
                   className="flex items-center justify-center md:justify-start space-x-2 text-gray-300 hover:text-sky-reflection-400 transition-colors group"
                 >
                   <Mail className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm">info@banderasmardelplata.com.ar</span>
+                  <span className="text-sm">banderas@banderasmdp.com.ar</span>
                 </a>
               </div>
             </motion.div>
@@ -76,7 +76,7 @@ export default function Footer() {
               <h4 className="text-white font-semibold mb-3">Seguinos</h4>
               <div className="flex space-x-3 justify-center md:justify-start">
                 <motion.a
-                  href="https://www.facebook.com"
+                  href="https://www.facebook.com/profile.php?id=100017825207091"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
@@ -86,7 +86,7 @@ export default function Footer() {
                   <Facebook className="h-4 w-4" />
                 </motion.a>
                 <motion.a
-                  href="https://www.instagram.com"
+                  href="https://www.instagram.com/banderasmdp/"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}

@@ -52,8 +52,8 @@ export default function ContactoPage() {
     {
       icon: Mail,
       title: "Email",
-      content: "info@banderasmardelplata.com.ar",
-      href: "mailto:info@banderasmardelplata.com.ar",
+      content: "banderas@banderasmdp.com.ar",
+      href: "mailto:banderas@banderasmdp.com.ar",
     },
   ];
 
@@ -124,8 +124,8 @@ export default function ContactoPage() {
                   <div>
                     <h3 className="font-semibold mb-2">Horarios de Atención</h3>
                     <p className="text-muted-foreground text-sm">
-                      Lunes a Viernes: 9:00 - 18:00<br />
-                      Sábados: 9:00 - 13:00
+                      Lunes a Viernes: 8:00 - 17:00<br />
+                      Sábados: Cerrado
                     </p>
                   </div>
                 </div>

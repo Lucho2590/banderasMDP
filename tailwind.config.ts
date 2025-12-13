@@ -11,7 +11,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
-        serif: ['var(--font-playfair)', 'serif'],
+        display: ['var(--font-montserrat)', 'sans-serif'],
       },
       colors: {
         // Brand colors - Sistema de diseño BanderasMDP (Paleta Bandera Argentina 🇦🇷)
