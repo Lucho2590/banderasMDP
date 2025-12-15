@@ -21,7 +21,7 @@ export default function Header() {
     { href: "/", label: "Inicio" },
     { href: "/tienda", label: "Tienda" },
     { href: "/productos", label: "Productos" },
-    { href: "/promociones", label: "Promociones" },
+    // { href: "/promociones", label: "Promociones" },
     { href: "/contacto", label: "Contacto" },
   ];
 

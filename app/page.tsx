@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full min-h-[60vh] flex items-center justify-center overflow-hidden">
         {/* Animated Background - Gradiente celeste mejorado */}
         <div className="absolute inset-0 gradient-celeste-blanco"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyIi8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
@@ -43,7 +43,7 @@ export default function Home() {
         {/* Content */}
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -51,7 +51,7 @@ export default function Home() {
             >
               <Sparkles className="h-4 w-4 text-white" />
               <span className="text-sm font-medium text-white">Líderes en Mar del Plata</span>
-            </motion.div>
+            </motion.div> */}
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -84,7 +84,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center "
             >
               <Link
                 href="/productos"
@@ -105,7 +105,7 @@ export default function Home() {
             </motion.div>
 
             {/* Stats */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.9 }}
@@ -133,12 +133,12 @@ export default function Home() {
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
 
         {/* Scroll Indicator mejorado */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
@@ -163,7 +163,7 @@ export default function Home() {
               className="w-1 h-3 bg-white/70 rounded-full mt-2"
             />
           </motion.div>
-        </motion.div>
+        </motion.div> */}
       </section>
 
       {/* Features Section */}

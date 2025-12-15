@@ -15,7 +15,6 @@ export default function ContactoPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Aquí iría la lógica de envío del formulario
-    console.log("Formulario enviado:", formData);
     setIsSubmitted(true);
     setFormData({ nombre: "", email: "", telefono: "", mensaje: "" });
     setTimeout(() => setIsSubmitted(false), 5000);
@@ -69,7 +68,7 @@ export default function ContactoPage() {
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Contacto</h1>
             <p className="text-xl text-muted-foreground">
-              Estamos para ayudarte. Contactanos por cualquier consulta o presupuesto
+              Estamos para ayudarte. Contactanos por cualquier consulta o presupuesto.
             </p>
           </div>
         </div>
@@ -84,7 +83,7 @@ export default function ContactoPage() {
               <div>
                 <h2 className="text-3xl font-bold mb-6">Información de Contacto</h2>
                 <p className="text-muted-foreground mb-8">
-                  Estamos ubicados en el corazón de Mar del Plata. Visitános o contactanos por cualquiera de nuestros canales.
+                  Visitános o contactanos por cualquiera de nuestros canales.
                 </p>
               </div>
 

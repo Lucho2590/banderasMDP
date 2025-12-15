@@ -106,12 +106,12 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8 pb-8 border-b border-gray-800"
+          className="flex flex-wrap justify-center gap-x-6 gap-y-2 pb-8"
         >
           {[
             { href: "/", label: "Inicio" },
             { href: "/productos", label: "Productos" },
-            { href: "/promociones", label: "Promociones" },
+            { href: "/tienda", label: "Tienda" },
             { href: "/contacto", label: "Contacto" },
           ].map((link, index) => (
             <Link

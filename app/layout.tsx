@@ -20,7 +20,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Banderas MDP - Banderas Mar del Plata | Calidad y Diseño",
+  title: "Banderas MDP",
   description: "Banderas y productos personalizados en Mar del Plata. Calidad premium, diseño personalizado y atención profesional.",
 };
 

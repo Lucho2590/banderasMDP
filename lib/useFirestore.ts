@@ -38,6 +38,13 @@ export interface Promocion {
   fechaFin: Timestamp;
 }
 
+export interface Category {
+  id: string;
+  name: string;
+  icon?: string;
+  orden?: number;
+}
+
 /**
  * Hook para obtener productos desde Firestore (colección "products")
  * @param filterByCategory - Categoría opcional para filtrar
@@ -102,7 +109,7 @@ export function useProducts(filterByCategory?: string) {
  * @param limitCount - Número de productos a traer (default: 10)
  * @returns Array de productos más vendidos y estado de carga
  */
-export function useTopProducts(limitCount: number = 10) {
+export function useTopProducts(limitCount: number = 100) {
   const [topProducts, setTopProducts] = useState<TProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -306,4 +313,46 @@ export function useProductBySlug(slug: string | null) {
   }, [slug]);
 
   return { product, loading, error };
+}
+
+/**
+ * Hook para obtener categorías desde Firestore (colección "categories")
+ * @returns Array de categorías y estado de carga
+ */
+export function useCategories() {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    try {
+      const categoriesRef = collection(db, "categories");
+      const q = query(categoriesRef);
+
+      const unsubscribe = onSnapshot(
+        q,
+        (snapshot: QuerySnapshot<DocumentData>) => {
+          const categoriesData = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          })) as Category[];
+          setCategories(categoriesData);
+          setLoading(false);
+        },
+        (err) => {
+          console.error("Error fetching categories:", err);
+          setError(err as Error);
+          setLoading(false);
+        }
+      );
+
+      return () => unsubscribe();
+    } catch (err) {
+      console.error("Error setting up categories listener:", err);
+      setError(err as Error);
+      setLoading(false);
+    }
+  }, []);
+
+  return { categories, loading, error };
 }
