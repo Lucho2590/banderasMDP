@@ -27,10 +27,10 @@ export default function ProductCard({ product, featured = false, index = 0 }: Pr
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 2 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.005 }}
       className="group relative"
     >
       {/* Badge de producto destacado */}
