@@ -6,7 +6,9 @@ import { useTopProducts, useProducts, useCategories } from "@/lib/useFirestore";
 import ProductCard from "@/components/ProductCard";
 import ProductCarouselHero from "@/components/ProductCarouselHero";
 import ProductCarouselNetflix from "@/components/ProductCarouselNetflix";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { trackPageView, trackSearch, trackSelectCategory } from "@/lib/analytics";
+import { trackSearchQuery } from "@/lib/analyticsHelpers";
 
 export default function TiendaPage() {
   // Traer los top 5 productos más vendidos para el carrousel
@@ -69,6 +71,40 @@ export default function TiendaPage() {
 
     return filtered;
   }, [allProducts, selectedCategoryName, searchTerm, firebaseCategories]);
+
+  // ==========================================
+  // ANALYTICS TRACKING
+  // ==========================================
+
+  // Track page view al cargar la tienda
+  useEffect(() => {
+    trackPageView("/tienda", "Tienda - Banderas MDP");
+  }, []);
+
+  // Track búsqueda (con debounce de 1 segundo)
+  useEffect(() => {
+    if (!searchTerm.trim()) return;
+
+    const timer = setTimeout(() => {
+      // Firebase Analytics
+      trackSearch(searchTerm, filteredProducts.length);
+
+      // Firestore Analytics para dashboard
+      trackSearchQuery(searchTerm, filteredProducts.length, "tienda");
+    }, 1000); // Esperar 1 segundo después de que el usuario deje de escribir
+
+    return () => clearTimeout(timer);
+  }, [searchTerm, filteredProducts.length]);
+
+  // Track selección de categoría
+  useEffect(() => {
+    if (selectedCategoryName) {
+      const selectedCategory = firebaseCategories.find(
+        (cat) => cat.name.toLowerCase() === selectedCategoryName.toLowerCase()
+      );
+      trackSelectCategory(selectedCategoryName, selectedCategory?.id);
+    }
+  }, [selectedCategoryName, firebaseCategories]);
 
   return (
     <div className="min-h-screen">

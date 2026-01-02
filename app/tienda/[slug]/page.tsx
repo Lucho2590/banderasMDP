@@ -6,8 +6,10 @@ import { useCart } from "@/context/CartContext";
 import { motion } from "framer-motion";
 import { ArrowLeft, ShoppingCart, Check, Star, TrendingUp, Package } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { trackViewItem, trackViewProductImage, trackPageView } from "@/lib/analytics";
+import { trackProductView } from "@/lib/analyticsHelpers";
 
 export default function ProductDetailPage() {
   const params = useParams();
@@ -34,6 +36,36 @@ export default function ProductDetailPage() {
     // Reset después de 2 segundos
     setTimeout(() => setAddedToCart(false), 2000);
   };
+
+  const handleImageClick = (index: number) => {
+    if (!product) return;
+
+    setSelectedImage(index);
+
+    // Track Analytics: Click en imagen de producto
+    trackViewProductImage(product, index);
+  };
+
+  // ==========================================
+  // ANALYTICS TRACKING
+  // ==========================================
+
+  // Track page view y view_item cuando se carga el producto
+  useEffect(() => {
+    if (product) {
+      trackPageView(`/tienda/${slug}`, `${product.name} - Banderas MDP`);
+
+      const variant = product.hasVariants && product.variants.length > 0
+        ? product.variants[selectedVariant]?.name
+        : undefined;
+
+      // Firebase Analytics
+      trackViewItem(product, variant);
+
+      // Firestore Analytics para dashboard
+      trackProductView(product, "tienda");
+    }
+  }, [product, slug]); // No incluir selectedVariant para evitar tracking en cada cambio
 
   if (loading) {
     return (
@@ -148,7 +180,7 @@ export default function ProductDetailPage() {
                 {product.imageUrls.map((url, index) => (
                   <button
                     key={index}
-                    onClick={() => setSelectedImage(index)}
+                    onClick={() => handleImageClick(index)}
                     className={`aspect-square rounded-xl overflow-hidden border-2 transition-all ${
                       selectedImage === index
                         ? "border-sky-reflection shadow-md scale-105"
