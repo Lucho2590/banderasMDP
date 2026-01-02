@@ -73,7 +73,8 @@ const trackEvent = <T extends keyof AnalyticsEvent>(
   }
 
   try {
-    logEvent(analytics, eventName, params);
+    // Cast a any para evitar problemas de tipos con Firebase Analytics
+    logEvent(analytics, eventName as any, params as any);
 
     // Log en desarrollo para debugging
     if (process.env.NODE_ENV === "development") {
