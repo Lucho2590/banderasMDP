@@ -6,6 +6,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useCart } from "@/context/CartContext";
 import { TAbandonedCart } from "@/types/abandonedCart";
+import { TProduct } from "@/types/product";
 
 export default function RecuperarCarritoPage() {
   const params = useParams();
@@ -45,11 +46,25 @@ export default function RecuperarCarritoPage() {
 
         // Restaurar cada item al carrito
         for (const item of cartData.items) {
-          await addToCart(
-            item.product,
-            item.quantity,
-            item.variant || undefined
-          );
+          // Buscar el producto en Firestore
+          const productRef = doc(db, "products", item.productId);
+          const productSnap = await getDoc(productRef);
+
+          if (!productSnap.exists()) {
+            console.warn(`Producto ${item.productId} no encontrado`);
+            continue;
+          }
+
+          const product = { ...productSnap.data(), id: productSnap.id } as TProduct;
+
+          // Reconstruir el variant si existe
+          let variant = undefined;
+          if (item.variant && product.hasVariants && product.variants) {
+            variant = product.variants.find(v => v.id === item.variant!.id);
+          }
+
+          // Agregar al carrito
+          addToCart(product, item.quantity, variant);
         }
 
         setSuccess(true);
