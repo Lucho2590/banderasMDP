@@ -131,7 +131,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           variant: item.selectedVariant
             ? {
                 id: item.selectedVariant.id,
-                name: item.selectedVariant.name || item.selectedVariant.size || "",
+                name: item.selectedVariant.size || "",
                 size: item.selectedVariant.size,
               }
             : undefined,

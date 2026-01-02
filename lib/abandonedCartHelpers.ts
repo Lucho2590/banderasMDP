@@ -42,7 +42,7 @@ export function cartItemToAbandonedCartItem(item: CartItem): AbandonedCartItem {
     variant: item.selectedVariant
       ? {
           id: item.selectedVariant.id,
-          name: item.selectedVariant.name || item.selectedVariant.size || "",
+          name: item.selectedVariant.size || "",
           size: item.selectedVariant.size,
         }
       : undefined,

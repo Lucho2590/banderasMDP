@@ -56,7 +56,7 @@ export default function ProductDetailPage() {
       trackPageView(`/tienda/${slug}`, `${product.name} - Banderas MDP`);
 
       const variant = product.hasVariants && product.variants.length > 0
-        ? product.variants[selectedVariant]?.name
+        ? product.variants[selectedVariant]?.size
         : undefined;
 
       // Firebase Analytics

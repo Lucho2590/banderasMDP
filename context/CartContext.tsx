@@ -145,7 +145,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
 
     // Track Analytics: Agregar al carrito
-    trackAddToCart(product, quantity, variant?.name);
+    trackAddToCart(product, quantity, variant?.size);
 
     // Firestore Analytics para dashboard
     trackProductAddToCart(product, quantity);
@@ -165,7 +165,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         trackRemoveFromCart(
           itemToRemove.product,
           itemToRemove.quantity,
-          itemToRemove.selectedVariant?.name
+          itemToRemove.selectedVariant?.size
         );
 
         // Firestore Analytics para dashboard
