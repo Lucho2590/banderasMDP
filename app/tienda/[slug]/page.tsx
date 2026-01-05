@@ -297,7 +297,19 @@ export default function ProductDetailPage() {
                 )}
               </div>
               <div className="text-4xl font-bold text-sky-reflection-600">
-                ${typeof displayPrice === 'number' ? displayPrice.toLocaleString('es-AR') : displayPrice}
+                ${typeof displayPrice === 'number' ? displayPrice.toLocaleString('es-AR') : displayPrice}<br/>
+                <span className="text-sm text-brand-text-secondary">
+                  Precio sin impuestos nacionales: $
+                  {typeof displayPrice === 'number'
+                    ? (displayPrice / 1.21).toLocaleString('es-AR').split(',')[0]
+                    : (() => {
+                        const parsed = Number(displayPrice);
+                        return !isNaN(parsed)
+                          ? (parsed / 1.21).toLocaleString('es-AR').split(',')[0]
+                          : displayPrice;
+                      })()
+                  }
+                </span>
               </div>
               {typeof displayStock === 'number' && displayStock > 0 && (
                 <div className="mt-3 flex items-center space-x-2 text-sm">
@@ -412,7 +424,6 @@ export default function ProductDetailPage() {
               {[
                 "Envío a todo el país",
                 "Materiales de primera calidad",
-                "Garantía de satisfacción",
               ].map((feature, index) => (
                 <div key={index} className="flex items-center space-x-3 text-brand-text-secondary">
                   <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
