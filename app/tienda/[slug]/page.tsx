@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { trackViewItem, trackViewProductImage, trackPageView } from "@/lib/analytics";
 import { trackProductView } from "@/lib/analyticsHelpers";
+import ImageLightbox from "@/components/ImageLightbox";
 
 export default function ProductDetailPage() {
   const params = useParams();
@@ -22,6 +23,8 @@ export default function ProductDetailPage() {
   const [selectedImage, setSelectedImage] = useState<number>(0);
   const [quantity, setQuantity] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -44,6 +47,11 @@ export default function ProductDetailPage() {
 
     // Track Analytics: Click en imagen de producto
     trackViewProductImage(product, index);
+  };
+
+  const handleOpenLightbox = (index: number) => {
+    setLightboxImageIndex(index);
+    setIsLightboxOpen(true);
   };
 
   // ==========================================
@@ -145,13 +153,24 @@ export default function ProductDetailPage() {
             transition={{ duration: 0.6 }}
           >
             {/* Main Image */}
-            <div className="bg-white rounded-2xl overflow-hidden border border-brand-border shadow-lg mb-4 aspect-square relative">
+            <div
+              className="bg-white rounded-2xl overflow-hidden border border-brand-border shadow-lg mb-4 aspect-square relative group cursor-pointer"
+              onClick={() => handleOpenLightbox(selectedImage)}
+            >
               {product.imageUrls && product.imageUrls.length > 0 ? (
-                <img
-                  src={product.imageUrls[selectedImage]}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
+                <>
+                  <img
+                    src={product.imageUrls[selectedImage]}
+                    alt={product.name}
+                    className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  />
+                  {/* Overlay con hint para hacer zoom */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 px-4 py-2 rounded-full text-sm font-semibold text-brand-text-primary">
+                      Click para ampliar
+                    </div>
+                  </div>
+                </>
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-brand-bg-secondary to-brand-bg-tertiary">
                   <div className="text-9xl text-sky-reflection/20">🏴</div>
@@ -406,6 +425,17 @@ export default function ProductDetailPage() {
           </motion.div>
         </div>
       </div>
+
+      {/* Image Lightbox Modal */}
+      {product.imageUrls && product.imageUrls.length > 0 && (
+        <ImageLightbox
+          images={product.imageUrls}
+          initialIndex={lightboxImageIndex}
+          isOpen={isLightboxOpen}
+          onClose={() => setIsLightboxOpen(false)}
+          productName={product.name}
+        />
+      )}
     </div>
   );
 }
