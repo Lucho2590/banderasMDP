@@ -382,9 +382,9 @@ export default function TiendaPage() {
               </p>
             </motion.div>
 
-            {/* Products Grid - Responsive: 1 col (<400px), 2 cols (mobile), 3 cols (tablet), 4 cols (desktop) */}
+            {/* Products Grid - Responsive: 2 cols (mobile), 3 cols (tablet), 4 cols (desktop) */}
             {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6">
                 {filteredProducts.map((product, index) => (
                   <ProductCard
                     key={product.id}
@@ -438,7 +438,7 @@ export default function TiendaPage() {
             </div>
 
             {/* Skeleton de grilla de productos */}
-            <div className="grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6">
               <ProductCardSkeleton count={8} />
             </div>
           </div>
