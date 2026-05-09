@@ -1,149 +1,164 @@
 "use client";
 
-import { ShoppingBag, ArrowRight } from "lucide-react";
+import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  MessageCircle,
+  Hammer,
+  ShieldCheck,
+  Pencil,
+  Heart,
+  Sparkles,
+} from "lucide-react";
+import { productCategories } from "@/data/productCategories";
+import CategoryAccordion from "@/components/CategoryAccordion";
+
+const WHATSAPP_PHONE = "542235416600";
+
+const trustItems = [
+  { icon: Hammer, label: "Fabricación propia" },
+  { icon: ShieldCheck, label: "Banderas reglamentarias" },
+  { icon: Pencil, label: "Diseños a medida" },
+  { icon: Heart, label: "Atención personalizada" },
+];
 
 export default function ProductosPage() {
-  const productos = [
-    { id: 1, nombre: "Banderas Nacionales", categoria: "Banderas Oficiales", color: "from-blue-500 to-blue-600" },
-    { id: 2, nombre: "Banderas Personalizadas", categoria: "Diseño Custom", color: "from-purple-500 to-pink-600" },
-    { id: 3, nombre: "Banderas Publicitarias", categoria: "Marketing", color: "from-orange-500 to-red-600" },
-    { id: 4, nombre: "Mástiles y Accesorios", categoria: "Equipamiento", color: "from-gray-600 to-gray-700" },
-    { id: 5, nombre: "Banderas Deportivas", categoria: "Deportes", color: "from-green-500 to-emerald-600" },
-    { id: 6, nombre: "Banderas Institucionales", categoria: "Empresas", color: "from-brand-accent-600 to-brand-accent-700" },
-  ];
+  const [openSlug, setOpenSlug] = useState<string | null>(productCategories[0]?.slug ?? null);
+
+  const handleToggle = (slug: string) => {
+    setOpenSlug((current) => (current === slug ? null : slug));
+  };
+
+  const scrollToCategory = (slug: string) => {
+    setOpenSlug(slug);
+    setTimeout(() => {
+      document.getElementById(slug)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 60);
+  };
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-sky-reflection/10 via-sky-reflection/5 to-brand-bg-secondary overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-30"></div>
+      <section className="relative pt-16 pb-14 md:pt-20 md:pb-16 bg-gradient-to-br from-sky-reflection/10 via-sky-reflection/5 to-brand-bg-secondary overflow-hidden">
+        {/* Pattern */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-30" />
+
+        {/* Floating blobs */}
+        <motion.div
+          aria-hidden
+          className="absolute -top-20 -left-20 w-72 h-72 rounded-full bg-sky-reflection-500/20 blur-3xl"
+          animate={{ y: [0, 30, 0], scale: [1, 1.05, 1] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          aria-hidden
+          className="absolute -bottom-24 -right-16 w-80 h-80 rounded-full bg-amber-400/15 blur-3xl"
+          animate={{ y: [0, -25, 0], scale: [1, 1.08, 1] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+        />
+
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
-          >
+          <div className="text-center max-w-4xl mx-auto">
+            {/* Kicker */}
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-sky-reflection mb-6 shadow-lg shadow-glow"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-reflection-500/10 border border-sky-reflection-500/20 text-sky-reflection-700 text-xs font-bold tracking-wider mb-5"
             >
-              <ShoppingBag className="h-10 w-10 text-white" />
+              <Sparkles className="h-3.5 w-3.5" />
+              CATÁLOGO COMPLETO
             </motion.div>
+
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-5xl md:text-6xl font-bold mb-6 text-brand-text-primary"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-brand-text-primary"
             >
               Nuestros Productos
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-xl text-brand-text-secondary"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-base md:text-lg text-brand-text-secondary max-w-2xl mx-auto"
             >
-              Descubrí nuestra amplia variedad de banderas y productos personalizados de la más alta calidad
+              Banderas, mástiles, estandartes y accesorios. Fabricación propia con calidad reglamentaria.
             </motion.p>
-          </motion.div>
+
+            {/* Trust indicators */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8 md:mt-10 max-w-3xl mx-auto">
+              {trustItems.map((trust, i) => {
+                const Icon = trust.icon;
+                return (
+                  <motion.div
+                    key={trust.label}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
+                    className="glass-effect rounded-xl p-3 md:p-4 flex flex-col items-center gap-2 text-center"
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-sky-reflection-500/15 flex items-center justify-center">
+                      <Icon className="h-5 w-5 text-sky-reflection-700" />
+                    </div>
+                    <span className="text-xs md:text-sm font-semibold text-brand-text-primary leading-tight">
+                      {trust.label}
+                    </span>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Quick-nav chips */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="mt-8 md:mt-10"
+            >
+              <div className="text-xs uppercase tracking-wider text-brand-text-secondary font-semibold mb-3">
+                Ir a categoría
+              </div>
+              <div className="flex flex-wrap justify-center gap-2">
+                {productCategories.map((category) => {
+                  const isActive = openSlug === category.slug;
+                  return (
+                    <button
+                      key={category.slug}
+                      type="button"
+                      onClick={() => scrollToCategory(category.slug)}
+                      className={`px-3.5 py-1.5 rounded-full text-xs md:text-sm font-semibold border transition-all ${
+                        isActive
+                          ? "bg-sky-reflection text-white border-sky-reflection shadow-md shadow-sky-reflection-500/30"
+                          : "bg-white/80 text-brand-text-primary border-sky-reflection-500/30 hover:bg-sky-reflection-500/10 hover:border-sky-reflection-500/50"
+                      }`}
+                    >
+                      {category.name}
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Categorías - Productos Grid */}
-      <section className="py-20 bg-brand-bg-primary">
+      {/* Accordion list */}
+      <section className="py-16 md:py-20 bg-brand-bg-primary">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {productos.map((producto, index) => (
-              <motion.div
-                key={producto.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative"
-              >
-                {/* Glow effect on hover */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-sky-reflection-500 to-sky-reflection-700 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500"></div>
-
-                <motion.div
-                  whileHover={{ y: -8 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="relative bg-brand-bg-primary border border-brand-border rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow"
-                >
-                  {/* Image Placeholder */}
-                  <div className={`relative aspect-[4/3] bg-gradient-to-br ${producto.color} overflow-hidden`}>
-                    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyIi8+PC9nPjwvZz48L3N2Zz4=')] opacity-30"></div>
-
-                    {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <motion.div
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        className="text-center"
-                      >
-                        <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                          <ShoppingBag className="h-12 w-12 text-white" />
-                        </div>
-                        <span className="text-sm text-white font-medium">Imagen del producto</span>
-                      </motion.div>
-                    </div>
-
-                    <motion.div
-                      initial={{ x: 20, opacity: 0 }}
-                      whileInView={{ x: 0, opacity: 1 }}
-                      viewport={{ once: true }}
-                      className="absolute top-4 right-4"
-                    >
-                      <span className="px-3 py-1 glass-effect text-white text-xs font-semibold rounded-full border border-white/30 shadow-lg">
-                        {producto.categoria}
-                      </span>
-                    </motion.div>
-
-                    {/* Quick view button on hover */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileHover={{ opacity: 1, y: 0 }}
-                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                      <button className="px-6 py-3 bg-white text-sky-reflection-600 rounded-xl font-semibold shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
-                        Vista Rápida
-                      </button>
-                    </motion.div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-sky-reflection-600 transition-colors text-brand-text-primary">
-                      {producto.nombre}
-                    </h3>
-                    <p className="text-brand-text-secondary text-sm mb-6 line-clamp-2">
-                      Descripción detallada del producto aparecerá aquí con todas las características y especificaciones.
-                    </p>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-brand-border">
-                      <div>
-                        <div className="text-2xl font-bold text-sky-reflection-600">Consultar</div>
-                        <div className="text-xs text-brand-text-secondary">Precio</div>
-                      </div>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="group/btn relative flex items-center space-x-2 px-5 py-2.5 bg-sky-reflection text-white rounded-xl hover:bg-sky-reflection-600 shadow-md hover:shadow-xl transition-all font-semibold overflow-hidden"
-                      >
-                        <span className="relative z-10">Ver más</span>
-                        <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform relative z-10" />
-                        <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700"></div>
-                      </motion.button>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
+          <div className="flex flex-col gap-6 max-w-5xl mx-auto">
+            {productCategories.map((category, index) => (
+              <CategoryAccordion
+                key={category.slug}
+                id={category.slug}
+                category={category}
+                isOpen={openSlug === category.slug}
+                onToggle={() => handleToggle(category.slug)}
+                index={index}
+              />
             ))}
           </div>
         </div>
@@ -151,20 +166,33 @@ export default function ProductosPage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-brand-bg-secondary">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <p className="text-lg text-brand-text-secondary mb-6">
+        <div className="container mx-auto px-4 lg:px-8 text-center max-w-2xl">
+          <p className="text-lg md:text-xl text-brand-text-primary font-semibold mb-3">
             ¿No encontrás lo que buscás?
           </p>
-          <Link
-            href="/contacto"
-            className="inline-flex items-center space-x-2 px-8 py-4 bg-sky-reflection text-white rounded-xl hover:bg-sky-reflection-600 hover:shadow-lg hover:scale-105 transition-all font-semibold"
-          >
-            <span>Contactanos para un presupuesto personalizado</span>
-            <ArrowRight className="h-5 w-5" />
-          </Link>
+          <p className="text-brand-text-secondary mb-8">
+            Trabajamos también productos a medida y diseños personalizados. Escribinos y te asesoramos.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent("Hola! Quería consultar por un producto personalizado.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 hover:shadow-lg hover:scale-105 transition-all font-semibold"
+            >
+              <MessageCircle className="h-5 w-5" />
+              Consultar por WhatsApp
+            </a>
+            <Link
+              href="/contacto"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-sky-reflection text-white rounded-xl hover:bg-sky-reflection-600 hover:shadow-lg hover:scale-105 transition-all font-semibold"
+            >
+              Pedir presupuesto
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+          </div>
         </div>
       </section>
     </div>
   );
 }
-
