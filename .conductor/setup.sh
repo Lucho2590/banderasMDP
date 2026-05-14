@@ -24,11 +24,11 @@ fi
 
 # 2) Install Node dependencies.
 if [ -f "$WORKSPACE_DIR/package.json" ]; then
-  echo "[npm] Running npm install..."
-  npm install
-  echo "[npm] Done."
+  echo "[pnpm] Running pnpm install..."
+  pnpm install
+  echo "[pnpm] Done."
 else
-  echo "[npm] No package.json found — skipping."
+  echo "[pnpm] No package.json found — skipping."
 fi
 
 echo "==> Setup complete."

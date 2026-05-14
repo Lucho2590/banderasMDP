@@ -47,13 +47,13 @@ BanderasMDP/
 ### Instalar dependencias
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### Ejecutar en desarrollo
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
@@ -61,8 +61,8 @@ Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 ### Build de producción
 
 ```bash
-npm run build
-npm start
+pnpm build
+pnpm start
 ```
 
 ## 🚀 Deploy en Vercel
@@ -89,9 +89,9 @@ El proyecto está configurado para deploy automático en Vercel.
 
 3. **Configuración automática:**
    - Framework: Next.js (detectado automáticamente)
-   - Build Command: `npm run build`
+   - Build Command: `pnpm build`
    - Output Directory: `.next`
-   - Install Command: `npm install`
+   - Install Command: `pnpm install`
 
 ### Opción 2: Deploy con Vercel CLI
 
