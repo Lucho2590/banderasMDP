@@ -7,7 +7,7 @@ import ProductCard from "@/components/ProductCard";
 import ProductCardSkeleton, { CarouselSkeleton } from "@/components/ProductCardSkeleton";
 import ProductCarouselNetflix from "@/components/ProductCarouselNetflix";
 import { useState, useMemo, useEffect } from "react";
-import { trackPageView, trackSearch, trackSelectCategory } from "@/lib/analytics";
+import { trackSearch, trackSelectCategory } from "@/lib/analytics";
 import { trackSearchQuery } from "@/lib/analyticsHelpers";
 import { TProduct } from "@/types/product";
 
@@ -145,11 +145,6 @@ export default function TiendaPage() {
   // ==========================================
   // ANALYTICS TRACKING
   // ==========================================
-
-  // Track page view al cargar la tienda
-  useEffect(() => {
-    trackPageView("/tienda", "Tienda - Banderas MDP");
-  }, []);
 
   // Track búsqueda (con debounce de 1 segundo)
   useEffect(() => {

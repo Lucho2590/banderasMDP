@@ -8,7 +8,7 @@ import { ArrowLeft, ShoppingCart, Check, Star, TrendingUp, Package } from "lucid
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { trackViewItem, trackViewProductImage, trackPageView } from "@/lib/analytics";
+import { trackViewItem, trackViewProductImage } from "@/lib/analytics";
 import { trackProductView } from "@/lib/analyticsHelpers";
 import ImageLightbox from "@/components/ImageLightbox";
 
@@ -58,11 +58,9 @@ export default function ProductDetailPage() {
   // ANALYTICS TRACKING
   // ==========================================
 
-  // Track page view y view_item cuando se carga el producto
+  // Track view_item cuando se carga el producto (page_view ya lo dispara AnalyticsProvider)
   useEffect(() => {
     if (product) {
-      trackPageView(`/tienda/${slug}`, `${product.name} - Banderas MDP`);
-
       const variant = product.hasVariants && product.variants.length > 0
         ? product.variants[selectedVariant]?.size
         : undefined;
