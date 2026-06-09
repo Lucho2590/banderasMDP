@@ -11,6 +11,9 @@ import Image from "next/image";
 import { trackViewItem, trackViewProductImage } from "@/lib/analytics";
 import { trackProductView } from "@/lib/analyticsHelpers";
 import ImageLightbox from "@/components/ImageLightbox";
+import ProductAdvantages from "@/components/producto/ProductAdvantages";
+import ProductSpecs from "@/components/producto/ProductSpecs";
+import ProductFAQ from "@/components/producto/ProductFAQ";
 
 export default function ProductDetailPage() {
   const params = useParams();
@@ -433,6 +436,11 @@ export default function ProductDetailPage() {
             </div>
           </motion.div>
         </div>
+
+        {/* Secciones de contenido (editables desde el backoffice) */}
+        <ProductAdvantages items={product.advantages ?? []} />
+        <ProductSpecs specs={product.specs} />
+        <ProductFAQ faqs={product.faqs} />
       </div>
 
       {/* Image Lightbox Modal */}
