@@ -27,6 +27,24 @@ export interface TProductVariant {
   sku?: string;
 }
 
+/**
+ * Especificaciones técnicas del producto.
+ * Se administran desde el backoffice. Todos los campos son opcionales:
+ * la ficha solo muestra los que tengan valor.
+ */
+export interface TProductSpecs {
+  material?: string;
+  terminacion?: string;
+  usoRecomendado?: string;
+  garantia?: string;
+}
+
+/** Pregunta frecuente asociada a un producto. */
+export interface TProductFaq {
+  question: string;
+  answer: string;
+}
+
 export interface TProduct {
   lowStock: boolean;
   salesCount: number;
@@ -47,4 +65,8 @@ export interface TProduct {
   hasVariants: boolean;
   sku: string;
   ecommerce?: boolean; // Campo para mostrar en web pública
+  // Contenido editable desde el backoffice (todos opcionales)
+  specs?: TProductSpecs; // Especificaciones técnicas
+  advantages?: string[]; // Ventajas / beneficios destacados
+  faqs?: TProductFaq[]; // Preguntas frecuentes
 }

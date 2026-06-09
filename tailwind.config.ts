@@ -14,100 +14,113 @@ const config: Config = {
         display: ['var(--font-montserrat)', 'sans-serif'],
       },
       colors: {
-        // Brand colors - Sistema de diseño BanderasMDP (Paleta Bandera Argentina 🇦🇷)
+        // Brand colors - Sistema de diseño BanderasMDP (B2B corporativo / industrial premium)
         brand: {
           bg: {
             primary: "#FFFFFF",
-            secondary: "#ecf4f9", // sky-reflection-50
-            tertiary: "#d8e9f3", // sky-reflection-100
+            secondary: "#F8FAFC", // slate-50
+            tertiary: "#EFF6FF", // blue-50
           },
           text: {
-            primary: "#243742", // charcoal-blue-800
-            secondary: "#5988a6", // charcoal-blue-500
-            tertiary: "#7aa0b8", // charcoal-blue-400
+            primary: "#0F172A", // slate-900
+            secondary: "#475569", // slate-600
+            tertiary: "#64748B", // slate-500
           },
           border: {
-            DEFAULT: "#b2d4e6", // sky-reflection-200
-            light: "#d8e9f3", // sky-reflection-100
-            dark: "#8bbeda", // sky-reflection-300
+            DEFAULT: "#E2E8F0", // slate-200
+            light: "#F1F5F9", // slate-100
+            dark: "#CBD5E1", // slate-300
           },
         },
-        // Celeste Argentino - Reflejo del Cielo (Color Principal)
+        // Azul Corporativo (Color Principal) - mantiene el nombre de token por compatibilidad
         "sky-reflection": {
-          50: "#ecf4f9",
-          100: "#d8e9f3",
-          200: "#b2d4e6",
-          300: "#8bbeda",
-          400: "#65a9cd",
-          500: "#3e93c1", // Color principal celeste argentino
-          600: "#32769a",
-          700: "#255874",
-          800: "#193b4d",
-          900: "#0c1d27",
-          950: "#09151b",
-          DEFAULT: "#3e93c1",
-          hover: "#32769a",
+          50: "#EFF6FF",
+          100: "#DBEAFE",
+          200: "#BFDBFE",
+          300: "#93C5FD",
+          400: "#60A5FA",
+          500: "#1D4ED8", // Azul corporativo principal
+          600: "#1E40AF",
+          700: "#1E3A8A", // Azul corporativo oscuro
+          800: "#172554",
+          900: "#131C3E",
+          950: "#0B1120",
+          DEFAULT: "#1D4ED8",
+          hover: "#1E40AF",
         },
-        // Azul Báltico - Para contraste y elementos importantes
+        // Azul profundo - Para secciones oscuras y contraste
         "baltic-blue": {
-          50: "#ecf2f9",
-          100: "#d9e6f2",
-          200: "#b3cce6",
-          300: "#8cb2d9",
-          400: "#6699cc",
-          500: "#407fbf",
-          600: "#336699",
-          700: "#264c73",
-          800: "#19334d",
-          900: "#0d1926",
-          950: "#09121b",
-          DEFAULT: "#336699",
-          hover: "#264c73",
+          50: "#EEF2FF",
+          100: "#E0E7FF",
+          200: "#C7D2FE",
+          300: "#93C5FD",
+          400: "#3B82F6",
+          500: "#2563EB",
+          600: "#1E3A8A",
+          700: "#172554",
+          800: "#131C3E",
+          900: "#0B1120",
+          950: "#070B16",
+          DEFAULT: "#1E3A8A",
+          hover: "#172554",
         },
-        // Carbón Azulado - Para textos y neutrales
+        // Slate - Para textos y neutrales fríos modernos
         "charcoal-blue": {
-          50: "#eef3f6",
-          100: "#dee7ed",
-          200: "#bdd0db",
-          300: "#9cb8c9",
-          400: "#7aa0b8",
-          500: "#5988a6",
-          600: "#476d85",
-          700: "#365263",
-          800: "#243742",
-          900: "#121b21",
-          950: "#0c1317",
-          DEFAULT: "#243742",
+          50: "#F8FAFC",
+          100: "#F1F5F9",
+          200: "#E2E8F0",
+          300: "#CBD5E1",
+          400: "#94A3B8",
+          500: "#64748B",
+          600: "#475569",
+          700: "#334155",
+          800: "#1E293B",
+          900: "#0F172A",
+          950: "#020617",
+          DEFAULT: "#0F172A",
         },
-        // Sol Argentino - Acento dorado para CTAs
+        // Acento (ex-dorado) - repointado a azul corporativo; los CTAs usan azul primario
         sol: {
-          50: "#FFFBEB",
-          100: "#FEF3C7",
-          200: "#FDE68A",
-          300: "#FCD34D",
-          400: "#FBBF24", // Dorado sol argentino
-          500: "#F59E0B",
-          600: "#D97706",
-          700: "#B45309",
-          800: "#92400E",
-          900: "#78350F",
-          DEFAULT: "#FBBF24",
-          hover: "#F59E0B",
+          50: "#EFF6FF",
+          100: "#DBEAFE",
+          200: "#BFDBFE",
+          300: "#93C5FD",
+          400: "#60A5FA",
+          500: "#1D4ED8",
+          600: "#1E40AF",
+          700: "#1E3A8A",
+          800: "#172554",
+          900: "#131C3E",
+          DEFAULT: "#1D4ED8",
+          hover: "#1E40AF",
+        },
+        // Verde de éxito / confirmaciones
+        success: {
+          50: "#F0FDF4",
+          100: "#DCFCE7",
+          200: "#BBF7D0",
+          300: "#86EFAC",
+          400: "#4ADE80",
+          500: "#22C55E",
+          600: "#16A34A",
+          700: "#15803D",
+          DEFAULT: "#22C55E",
+          hover: "#16A34A",
         },
         // Alias para compatibilidad
         accent: {
-          50: "#ecf4f9",
-          100: "#d8e9f3",
-          200: "#b2d4e6",
-          300: "#8bbeda",
-          400: "#65a9cd",
-          500: "#3e93c1",
-          600: "#32769a",
-          700: "#255874",
-          800: "#193b4d",
-          900: "#0c1d27",
-          DEFAULT: "#3e93c1",
-          hover: "#32769a",
+          50: "#EFF6FF",
+          100: "#DBEAFE",
+          200: "#BFDBFE",
+          300: "#93C5FD",
+          400: "#60A5FA",
+          500: "#1D4ED8",
+          600: "#1E40AF",
+          700: "#1E3A8A",
+          800: "#172554",
+          900: "#131C3E",
+          DEFAULT: "#1D4ED8",
+          hover: "#1E40AF",
         },
         // shadCN UI colors - Sincronizados con brand
         background: "var(--bg-primary)",
@@ -160,8 +173,8 @@ const config: Config = {
         'xl': '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
         '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
         'inner': 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
-        'glow': '0 0 20px rgb(0 102 204 / 0.3)',
-        'glow-lg': '0 0 30px rgb(0 102 204 / 0.4)',
+        'glow': '0 0 20px rgb(29 78 216 / 0.25)',
+        'glow-lg': '0 0 30px rgb(29 78 216 / 0.35)',
         'none': 'none',
       },
       animation: {
