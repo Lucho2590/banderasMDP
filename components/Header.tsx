@@ -97,6 +97,14 @@ export default function Header() {
               <span className="hidden xl:inline">223-473 9600</span>
             </a>
 
+            {/* CTA Presupuesto */}
+            <Link
+              href="/contacto"
+              className="inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-sky-reflection rounded-lg hover:bg-sky-reflection-hover transition-colors shadow-sm"
+            >
+              Solicitar presupuesto
+            </Link>
+
             {/* Cart Button */}
             <button
               onClick={() => setIsCartOpen(true)}
