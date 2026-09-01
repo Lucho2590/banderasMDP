@@ -18,23 +18,43 @@ lib/
 
 ## 🗄️ **Colecciones en Firestore**
 
-Tu base de datos tiene 3 colecciones principales:
+> ⚠️ El proyecto Firebase (`publimartools`) está **compartido con el CRM/backoffice**.
+> En Firestore vas a ver también colecciones que no pertenecen a este sitio
+> (`auditLog`, `quotes`, `sales`, `clients`, `orders`, `notes`). No las toques desde acá.
 
-### 1. **`productos`**
+Colecciones que usa este sitio:
+
+### 1. **`products`**
+
+La forma completa está en `types/product.ts` (`TProduct`) — esa es la fuente de verdad.
+Campos relevantes para la web pública:
+
 ```typescript
 {
   id: string,
-  nombre: string,
-  descripcion: string,
-  precio: number,
-  imagenes: string[],  // URLs de Firebase Storage
-  categoria: string,
-  destacado: boolean,
-  createdAt: Timestamp
+  name: string,
+  slug?: string,          // URL amigable para SEO
+  description?: string,
+  price: number | string,
+  imageUrls: string[],    // URLs de Firebase Storage
+  categories: string[],   // IDs de docs de la colección `categories`
+  variants: TProductVariant[],
+  hasVariants: boolean,
+  stock: number | string,
+  salesCount: number,     // usado para ordenar "más vendidos"
+  ecommerce?: boolean,    // TRUE = se muestra en la web pública
+  createdAt?: Date
 }
 ```
 
-### 2. **`clientes`** (logos)
+**Importante:** todas las queries públicas filtran por `ecommerce == true`.
+
+### 2. **`categories`**
+```typescript
+{ id: string, name: string, description?: string, createdAt: Date, updatedAt: Date }
+```
+
+### 3. **`clientes`** (logos)
 ```typescript
 {
   id: string,
@@ -44,7 +64,7 @@ Tu base de datos tiene 3 colecciones principales:
 }
 ```
 
-### 3. **`promociones`**
+### 4. **`promociones`**
 ```typescript
 {
   id: string,
@@ -58,6 +78,53 @@ Tu base de datos tiene 3 colecciones principales:
 }
 ```
 
+Además el sitio escribe en `ecommerceOrders`, `abandonedCarts`, `contactSubmissions`,
+`productAnalytics`, `productViewEvents`, `searchQueries` y `conversionFunnels`.
+
+---
+
+## 🔑 **Índices de Firestore**
+
+Las queries que combinan un `where` con un `orderBy` sobre otro campo necesitan un
+**índice compuesto**. Sin él la query no devuelve nada y tira
+`FirebaseError: The query requires an index` — la página queda rota en producción.
+
+Los índices están **versionados en `firestore.indexes.json`**, junto con `firebase.json`
+y `.firebaserc`. Para deployarlos:
+
+```bash
+firebase deploy --only firestore:indexes --project publimartools
+```
+
+### ⚠️ Antes de deployar, leé esto
+
+El deploy de índices es **declarativo**: todo índice que exista en Firestore pero **no**
+esté en `firestore.indexes.json` se marca para borrado. Como el proyecto es compartido
+con el CRM, `firestore.indexes.json` incluye también **los índices del CRM**.
+
+Reglas de oro:
+
+1. **Nunca** deployar con `--force`. Usá `--non-interactive` (aborta si hay borrados
+   pendientes) o leé el prompt antes de confirmar.
+2. Antes de editar el archivo, sincronizalo con el estado real y recién ahí agregá lo tuyo:
+   ```bash
+   firebase firestore:indexes --project publimartools > firestore.indexes.json
+   ```
+3. Si el output del deploy menciona borrar índices de `auditLog`, `quotes`, `sales`,
+   `clients`, `orders` o `notes` → **abortá**, el archivo quedó desactualizado.
+
+### Índices que usa este sitio
+
+| Colección | Campos | Query |
+|---|---|---|
+| `products` | `ecommerce ASC`, `createdAt DESC` | `useProducts()` — `lib/useFirestore.ts` |
+| `products` | `ecommerce ASC`, `salesCount DESC` | `useTopProducts()` — carrousel "más vendidos" |
+| `products` | `ecommerce ASC`, `categories CONTAINS`, `createdAt DESC` | `useProducts(categoria)` — filtro por categoría en servidor |
+| `promociones` | `activa ASC`, `fechaInicio DESC` | `usePromociones()` |
+
+Si agregás una query nueva con `where` + `orderBy`, agregá el índice acá **antes** de mergear.
+Los índices tardan unos minutos en construirse; hasta que pasan a `Enabled` la query sigue fallando.
+
 ---
 
 ## 🎯 **Cómo Usar Firebase**
@@ -67,19 +134,27 @@ Tu base de datos tiene 3 colecciones principales:
 ```tsx
 "use client";
 
-import { useProductos, useClientes, usePromociones } from "@/lib/useFirestore";
+import {
+  useProducts,
+  useTopProducts,
+  useClientes,
+  usePromociones,
+} from "@/lib/useFirestore";
 
 export default function MiComponente() {
-  // Obtener todos los productos
-  const { productos, loading, error } = useProductos();
+  // Todos los productos con ecommerce = true (ordenados por createdAt desc)
+  const { products, loading, error } = useProducts();
 
-  // Obtener solo productos destacados
-  const { productos: destacados } = useProductos(true);
+  // Filtrado por categoría (se pasa el ID del doc de `categories`)
+  const { products: banderas } = useProducts("id-de-la-categoria");
 
-  // Obtener logos de clientes
+  // Top 5 más vendidos (ordenados por salesCount desc)
+  const { topProducts } = useTopProducts(5);
+
+  // Logos de clientes
   const { clientes } = useClientes();
 
-  // Obtener promociones activas
+  // Promociones activas
   const { promociones } = usePromociones();
 
   if (loading) return <p>Cargando...</p>;
@@ -87,11 +162,11 @@ export default function MiComponente() {
 
   return (
     <div>
-      {productos.map((producto) => (
-        <div key={producto.id}>
-          <h3>{producto.nombre}</h3>
-          <p>${producto.precio}</p>
-          <img src={producto.imagenes[0]} alt={producto.nombre} />
+      {products.map((product) => (
+        <div key={product.id}>
+          <h3>{product.name}</h3>
+          <p>${product.price}</p>
+          <img src={product.imageUrls[0]} alt={product.name} />
         </div>
       ))}
     </div>
@@ -103,8 +178,13 @@ export default function MiComponente() {
 
 ### **2. Agregar Datos (CRUD)**
 
+> ⚠️ Los ejemplos de abajo quedaron con los nombres de campo viejos (en español).
+> Para `products` la forma real es `TProduct` en `types/product.ts`
+> (`name`, `price`, `imageUrls`, `categories`, `ecommerce`, …).
+> En la práctica los productos se cargan desde el CRM, no desde este sitio.
+
 ```tsx
-import { addProducto, addCliente, addPromocion } from "@/lib/firestoreHelpers";
+import { addProduct, addCliente, addPromocion } from "@/lib/firestoreHelpers";
 import { uploadImage } from "@/lib/firebaseStorage";
 
 // Agregar un producto
@@ -113,7 +193,7 @@ async function crearProducto() {
   const imageURL = await uploadImage(file, "productos/mi-bandera.jpg");
 
   // 2. Luego crea el producto
-  const id = await addProducto({
+  const id = await addProduct({
     nombre: "Bandera Argentina",
     descripcion: "Bandera oficial de Argentina 150x90cm",
     precio: 15000,
@@ -178,20 +258,20 @@ async function handleMultipleUpload(files: File[]) {
 
 ```tsx
 import {
-  updateProducto,
-  deleteProducto,
+  updateProduct,
+  deleteProduct,
   updateCliente,
   deleteCliente,
 } from "@/lib/firestoreHelpers";
 
 // Actualizar un producto
-await updateProducto("producto-id-123", {
+await updateProduct("producto-id-123", {
   precio: 18000,
   destacado: false,
 });
 
 // Eliminar un producto
-await deleteProducto("producto-id-123");
+await deleteProduct("producto-id-123");
 
 // Actualizar un cliente
 await updateCliente("cliente-id-456", {
@@ -210,7 +290,7 @@ await deleteCliente("cliente-id-456");
 
 1. **Crear colecciones:**
    - Ve a Firestore Database
-   - Crea 3 colecciones: `productos`, `clientes`, `promociones`
+   - Colecciones del sitio: `products`, `categories`, `clientes`, `promociones`
 
 2. **Configurar Storage:**
    - Ve a Storage
@@ -242,7 +322,7 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     // Productos: lectura pública, escritura solo autenticados
-    match /productos/{productId} {
+    match /products/{productId} {
       allow read: if true;
       allow write: if request.auth != null;
     }
