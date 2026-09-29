@@ -8,91 +8,114 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      center: true,
+      screens: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1240px",
+        "2xl": "1240px",
+      },
+    },
     extend: {
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
         display: ['var(--font-montserrat)', 'sans-serif'],
       },
       colors: {
-        // Brand colors - Sistema de diseño BanderasMDP (B2B corporativo / industrial premium)
+        // Brand colors - Sistema de diseño BanderasMDP
+        // Paleta: azul #064B87 / celeste #2D9FEA / celeste claro #EAF5FC / texto #123B61
         brand: {
           bg: {
             primary: "#FFFFFF",
-            secondary: "#F8FAFC", // slate-50
-            tertiary: "#EFF6FF", // blue-50
+            secondary: "#F5FAFD",
+            tertiary: "#EAF5FC", // light_blue de marca
           },
           text: {
-            primary: "#0F172A", // slate-900
-            secondary: "#475569", // slate-600
-            tertiary: "#64748B", // slate-500
+            primary: "#123B61",
+            secondary: "#54708B",
+            tertiary: "#7A93AC",
           },
           border: {
-            DEFAULT: "#E2E8F0", // slate-200
-            light: "#F1F5F9", // slate-100
-            dark: "#CBD5E1", // slate-300
+            DEFAULT: "#DBE8F2",
+            light: "#EDF2F6",
+            dark: "#B9D5E7",
           },
         },
-        // Azul Corporativo (Color Principal) - mantiene el nombre de token por compatibilidad
+        // Azul de marca (Color Principal) - mantiene el nombre de token por compatibilidad
         "sky-reflection": {
-          50: "#EFF6FF",
-          100: "#DBEAFE",
-          200: "#BFDBFE",
-          300: "#93C5FD",
-          400: "#60A5FA",
-          500: "#1D4ED8", // Azul corporativo principal
-          600: "#1E40AF",
-          700: "#1E3A8A", // Azul corporativo oscuro
-          800: "#172554",
-          900: "#131C3E",
-          950: "#0B1120",
-          DEFAULT: "#1D4ED8",
-          hover: "#1E40AF",
+          50: "#EAF5FC",
+          100: "#D3EBF8",
+          200: "#A9D7F3",
+          300: "#6FBEEE",
+          400: "#2D9FEA", // celeste de marca
+          500: "#1179C4",
+          600: "#064B87", // azul de marca (primario)
+          700: "#053E6F",
+          800: "#043055",
+          900: "#032440",
+          950: "#021A2E",
+          DEFAULT: "#064B87",
+          hover: "#053E6F",
         },
-        // Azul profundo - Para secciones oscuras y contraste
+        // Azul profundo - Para secciones oscuras y contraste (footer, bloques full-bleed)
         "baltic-blue": {
-          50: "#EEF2FF",
-          100: "#E0E7FF",
-          200: "#C7D2FE",
-          300: "#93C5FD",
-          400: "#3B82F6",
-          500: "#2563EB",
-          600: "#1E3A8A",
-          700: "#172554",
-          800: "#131C3E",
-          900: "#0B1120",
-          950: "#070B16",
-          DEFAULT: "#1E3A8A",
-          hover: "#172554",
+          50: "#EAF5FC",
+          100: "#D3EBF8",
+          200: "#A9D7F3",
+          300: "#6FBEEE",
+          400: "#2D9FEA",
+          500: "#0A5C9E",
+          600: "#063A69", // azul del footer
+          700: "#043055",
+          800: "#032440",
+          900: "#021A2E",
+          950: "#01121F",
+          DEFAULT: "#064B87",
+          hover: "#043055",
         },
-        // Slate - Para textos y neutrales fríos modernos
+        // Neutrales azulados - Para textos y fondos fríos
         "charcoal-blue": {
-          50: "#F8FAFC",
-          100: "#F1F5F9",
-          200: "#E2E8F0",
-          300: "#CBD5E1",
-          400: "#94A3B8",
-          500: "#64748B",
-          600: "#475569",
-          700: "#334155",
-          800: "#1E293B",
-          900: "#0F172A",
-          950: "#020617",
-          DEFAULT: "#0F172A",
+          50: "#F5FAFD",
+          100: "#EDF2F6",
+          200: "#DBE8F2",
+          300: "#B9D5E7",
+          400: "#8BA3B9",
+          500: "#54708B",
+          600: "#3E5A74",
+          700: "#2A455E",
+          800: "#1A3450",
+          900: "#0E2D4B",
+          950: "#071C31",
+          DEFAULT: "#123B61",
         },
-        // Acento (ex-dorado) - repointado a azul corporativo; los CTAs usan azul primario
+        // Acento (ex-dorado) - repointado al azul de marca; los CTAs usan azul primario
         sol: {
-          50: "#EFF6FF",
-          100: "#DBEAFE",
-          200: "#BFDBFE",
-          300: "#93C5FD",
-          400: "#60A5FA",
-          500: "#1D4ED8",
-          600: "#1E40AF",
-          700: "#1E3A8A",
-          800: "#172554",
-          900: "#131C3E",
-          DEFAULT: "#1D4ED8",
-          hover: "#1E40AF",
+          50: "#EAF5FC",
+          100: "#D3EBF8",
+          200: "#A9D7F3",
+          300: "#6FBEEE",
+          400: "#2D9FEA",
+          500: "#1179C4",
+          600: "#064B87",
+          700: "#053E6F",
+          800: "#043055",
+          900: "#032440",
+          DEFAULT: "#064B87",
+          hover: "#053E6F",
+        },
+        // Amarillo de marca - SOLO para la marca del logo. No usar como fondo de texto blanco.
+        sun: {
+          400: "#F7D470",
+          500: "#F4C542",
+          600: "#DCAE2A",
+          DEFAULT: "#F4C542",
+        },
+        // Verde WhatsApp de marca
+        whatsapp: {
+          DEFAULT: "#18B866",
+          hover: "#149B57",
         },
         // Verde de éxito / confirmaciones
         success: {
@@ -109,18 +132,18 @@ const config: Config = {
         },
         // Alias para compatibilidad
         accent: {
-          50: "#EFF6FF",
-          100: "#DBEAFE",
-          200: "#BFDBFE",
-          300: "#93C5FD",
-          400: "#60A5FA",
-          500: "#1D4ED8",
-          600: "#1E40AF",
-          700: "#1E3A8A",
-          800: "#172554",
-          900: "#131C3E",
-          DEFAULT: "#1D4ED8",
-          hover: "#1E40AF",
+          50: "#EAF5FC",
+          100: "#D3EBF8",
+          200: "#A9D7F3",
+          300: "#6FBEEE",
+          400: "#2D9FEA",
+          500: "#1179C4",
+          600: "#064B87",
+          700: "#053E6F",
+          800: "#043055",
+          900: "#032440",
+          DEFAULT: "#064B87",
+          hover: "#053E6F",
         },
         // shadCN UI colors - Sincronizados con brand
         background: "var(--bg-primary)",
@@ -160,6 +183,17 @@ const config: Config = {
           "5": "hsl(var(--chart-5))",
         },
       },
+      backgroundImage: {
+        // Registrados como utilidades `bg-gradient-*` para poder usarlos desde JSX.
+        // Deben quedar sincronizados con los gradientes de app/globals.css.
+        "gradient-baltic":
+          "linear-gradient(135deg, #064B87 0%, #043055 50%, #021A2E 100%)",
+        "gradient-hero-light":
+          "linear-gradient(110deg, #EEF8FD 0%, #DCEFFB 48%, #C6E7F8 100%)",
+        "gradient-whatsapp-band": "linear-gradient(110deg, #DFF3FF 0%, #C6E7F8 100%)",
+        "gradient-card-overlay":
+          "linear-gradient(to top, rgba(6,75,135,0.92) 0%, rgba(6,75,135,0) 58%)",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -173,8 +207,10 @@ const config: Config = {
         'xl': '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
         '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
         'inner': 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
-        'glow': '0 0 20px rgb(29 78 216 / 0.25)',
-        'glow-lg': '0 0 30px rgb(29 78 216 / 0.35)',
+        'glow': '0 0 20px rgb(6 75 135 / 0.25)',
+        'glow-lg': '0 0 30px rgb(6 75 135 / 0.35)',
+        'card-soft': '0 8px 24px rgb(11 55 90 / 0.08)',
+        'hero-panel': '0 24px 50px rgb(6 75 135 / 0.14)',
         'none': 'none',
       },
       animation: {
@@ -217,4 +253,3 @@ const config: Config = {
 };
 
 export default config;
-

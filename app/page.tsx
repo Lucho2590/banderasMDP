@@ -1,19 +1,17 @@
 import Hero from "@/components/home/Hero";
-import TrustBar from "@/components/home/TrustBar";
 import FeaturedCategories from "@/components/home/FeaturedCategories";
-import ProjectsGallery from "@/components/home/ProjectsGallery";
-import ClientsStrip from "@/components/home/ClientsStrip";
+import Benefits from "@/components/home/Benefits";
 import AboutShort from "@/components/home/AboutShort";
+import WhatsAppCTA from "@/components/home/WhatsAppCTA";
 
 export default function Home() {
   return (
     <div className="flex flex-col">
       <Hero />
-      <TrustBar />
       <FeaturedCategories />
-      <ProjectsGallery />
-      <ClientsStrip />
+      <Benefits />
       <AboutShort />
+      <WhatsAppCTA />
     </div>
   );
 }
