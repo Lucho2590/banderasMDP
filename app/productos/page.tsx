@@ -7,7 +7,12 @@ import { Search, SlidersHorizontal, X, MessageCircle, ArrowRight, PackageSearch 
 import {
   productCategories,
   catalogProducts,
+  homeCollections,
+  CATEGORY_SLUGS,
+  LEGACY_CATEGORY_HASHES,
   type CatalogProduct,
+  type CategorySlug,
+  type CollectionPreset,
 } from "@/data/productCategories";
 import CatalogFilters, {
   type FilterGroup,
@@ -24,18 +29,52 @@ function emptySelected(): Selected {
   return { tipo: new Set(), material: new Set(), uso: new Set(), tamano: new Set() };
 }
 
+/**
+ * Resuelve el hash de la URL al preset de filtros correspondiente.
+ * Acepta slugs de colección de la home (incluida la derivada `personalizados`),
+ * slugs de categoría y los slugs anteriores al rediseño.
+ */
+function presetFromHash(raw: string): CollectionPreset | null {
+  if (!raw) return null;
+  const hash = LEGACY_CATEGORY_HASHES[raw] ?? raw;
+
+  const collection = homeCollections.find((c) => c.slug === hash);
+  if (collection) return collection.preset;
+
+  if ((CATEGORY_SLUGS as readonly string[]).includes(hash)) {
+    return { kind: "tipo", slugs: [hash as CategorySlug] };
+  }
+  return null;
+}
+
+/** Aplica un preset partiendo de cero, para que el deep-link sea determinista. */
+function selectedFromPreset(preset: CollectionPreset): Selected {
+  const next = emptySelected();
+  if (preset.kind === "tipo") {
+    next.tipo = new Set(preset.slugs);
+  } else {
+    next[preset.group] = new Set([preset.value]);
+  }
+  return next;
+}
+
 export default function ProductosPage() {
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<Selected>(emptySelected);
   const [activeProduct, setActiveProduct] = useState<CatalogProduct | null>(null);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  // Deep-link: /productos#<categorySlug> preselecciona el tipo (links de la home)
+  // Deep-link: /productos#<slug> preselecciona filtros (tarjetas de la home).
+  // Escucha `hashchange` además del montaje: Next no remonta el componente al
+  // navegar de #banderas a #accesorios ni al usar atrás/adelante.
   useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
-    if (hash && productCategories.some((c) => c.slug === hash)) {
-      setSelected((prev) => ({ ...prev, tipo: new Set([hash]) }));
-    }
+    const applyHash = () => {
+      const preset = presetFromHash(window.location.hash.replace("#", ""));
+      if (preset) setSelected(selectedFromPreset(preset));
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
   }, []);
 
   // Construcción de facetas con conteos

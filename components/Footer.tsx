@@ -1,151 +1,153 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Instagram, MapPin, Phone, MessageCircle, Mail } from "lucide-react";
+import { Facebook, Instagram, Flag } from "lucide-react";
 import { motion } from "framer-motion";
+import { productCategories } from "@/data/productCategories";
+import {
+  ADDRESS,
+  EMAIL,
+  FACEBOOK_URL,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+  MAPS_URL,
+  PHONE,
+  PHONE_DISPLAY,
+  WHATSAPP_DISPLAY,
+  waLink,
+} from "@/lib/contact";
+
+const infoLinks = [
+  { href: "/", label: "Inicio" },
+  { href: "/tienda", label: "Tienda" },
+  { href: "/productos", label: "Productos" },
+  { href: "/contacto", label: "Contacto" },
+];
 
 export default function Footer() {
   return (
-    <footer className="relative bg-brand-text-primary overflow-hidden">
-      {/* Patrón de fondo sutil */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50"></div>
-
-      <div className="container mx-auto px-4 lg:px-8 py-12 relative z-10">
-        {/* Top Section - Compacta */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          {/* Columna 1: Brand + Contacto */}
-          <div className="text-center md:text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h3 className="text-2xl font-bold text-white mb-2">Banderas MDP</h3>
-              <p className="text-sky-reflection-400 text-sm mb-4">Mar del Plata</p>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                Fabricamos banderas y productos personalizados de la más alta calidad desde hace más de 40 años.
-              </p>
-
-              {/* Contacto directo */}
-              <div className="space-y-2">
-                <a
-                  href="tel:2234739600"
-                  className="flex items-center justify-center md:justify-start space-x-2 text-gray-300 hover:text-sky-reflection-400 transition-colors group"
-                >
-                  <Phone className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm">223-473 9600</span>
-                </a>
-                <a
-                  href="mailto:info@banderasmardelplata.com.ar"
-                  className="flex items-center justify-center md:justify-start space-x-2 text-gray-300 hover:text-sky-reflection-400 transition-colors group"
-                >
-                  <Mail className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm">banderas@banderasmdp.com.ar</span>
-                </a>
-              </div>
-            </motion.div>
+    <footer className="bg-baltic-blue-600 text-white">
+      <div className="container mx-auto px-4 py-10 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-2 gap-8 lg:grid-cols-[2fr_1fr_1fr_1fr]"
+        >
+          {/* Marca */}
+          <div className="col-span-2 lg:col-span-1">
+            <div className="flex items-center gap-2.5">
+              <span className="grid h-[38px] w-[38px] place-items-center rounded-full bg-sun">
+                <Flag className="h-4 w-4 text-white" />
+              </span>
+              <span className="text-[22px] font-extrabold tracking-[-0.04em] text-white">
+                Banderas <span className="font-normal">MDP</span>
+              </span>
+            </div>
+            <p className="mt-3 text-sm text-sky-reflection-200">
+              Fabricación propia · Mar del Plata
+            </p>
           </div>
 
-          {/* Columna 2: Ubicación + Redes */}
-          <div className="text-center md:text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <h4 className="text-white font-semibold mb-3">Visitanos</h4>
+          {/* Productos */}
+          <div>
+            <h4 className="mb-3 text-sm font-bold text-white">Productos</h4>
+            <ul>
+              {productCategories.map((category) => (
+                <li key={category.slug}>
+                  <Link
+                    href={`/productos#${category.slug}`}
+                    className="block py-[3px] text-[13px] text-sky-reflection-100 transition-colors hover:text-white"
+                  >
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Información */}
+          <div>
+            <h4 className="mb-3 text-sm font-bold text-white">Información</h4>
+            <ul>
+              {infoLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="block py-[3px] text-[13px] text-sky-reflection-100 transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contacto */}
+          <div>
+            <h4 className="mb-3 text-sm font-bold text-white">Contacto</h4>
+            <ul className="text-[13px] text-sky-reflection-100">
+              <li>
+                <a
+                  href={MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block py-[3px] transition-colors hover:text-white"
+                >
+                  {ADDRESS}
+                </a>
+              </li>
+              <li>
+                <a href={`tel:${PHONE}`} className="block py-[3px] transition-colors hover:text-white">
+                  {PHONE_DISPLAY}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={waLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block py-[3px] transition-colors hover:text-white"
+                >
+                  WhatsApp {WHATSAPP_DISPLAY}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${EMAIL}`} className="block py-[3px] transition-colors hover:text-white">
+                  {EMAIL}
+                </a>
+              </li>
+            </ul>
+
+            <div className="mt-4 flex gap-2.5">
               <a
-                href="https://www.google.com/maps/search/?api=1&query=San+Lorenzo+3145,+Mar+del+Plata,+Buenos+Aires,+Argentina"
+                href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-start justify-center md:justify-start space-x-2 mb-6 group cursor-pointer"
+                aria-label={`Instagram: ${INSTAGRAM_HANDLE}`}
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white transition-colors hover:bg-white/20"
               >
-                <MapPin className="h-4 w-4 text-sky-reflection-400 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                <div className="text-left">
-                  <p className="text-gray-400 text-sm group-hover:text-sky-reflection-400 transition-colors">
-                    San Lorenzo 3145, Mar del Plata
-                  </p>
-                  <p className="text-gray-500 text-xs group-hover:text-sky-reflection-400 transition-colors">
-                    Ver en Google Maps →
-                  </p>
-                </div>
+                <Instagram className="h-4 w-4" />
               </a>
-
-              <h4 className="text-white font-semibold mb-3">Seguinos</h4>
-              <div className="flex space-x-3 justify-center md:justify-start">
-                <motion.a
-                  href="https://www.facebook.com/profile.php?id=100017825207091"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="w-9 h-9 rounded-lg bg-white/10 hover:bg-sky-reflection flex items-center justify-center text-white transition-all"
-                  aria-label="Facebook"
-                >
-                  <Facebook className="h-4 w-4" />
-                </motion.a>
-                <motion.a
-                  href="https://www.instagram.com/banderasmdp/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="w-9 h-9 rounded-lg bg-white/10 hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 flex items-center justify-center text-white transition-all"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="h-4 w-4" />
-                </motion.a>
-              </div>
-            </motion.div>
+              <a
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white transition-colors hover:bg-white/20"
+              >
+                <Facebook className="h-4 w-4" />
+              </a>
+            </div>
           </div>
+        </motion.div>
+
+        <div className="mt-9 flex flex-col items-center gap-1.5 border-t border-white/10 pt-6 text-center text-xs text-sky-reflection-200 md:flex-row md:justify-between md:text-left">
+          <p>© {new Date().getFullYear()} Banderas Mar del Plata. Todos los derechos reservados.</p>
+          <p>Diseñado por OG comunicación y diseño</p>
         </div>
-
-        {/* Enlaces horizontales */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-x-6 gap-y-2 pb-8"
-        >
-          {[
-            { href: "/", label: "Inicio" },
-            { href: "/productos", label: "Productos" },
-            { href: "/tienda", label: "Tienda" },
-            { href: "/contacto", label: "Contacto" },
-          ].map((link, index) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-gray-400 hover:text-sky-reflection-400 transition-colors text-sm"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </motion.div>
-
-        {/* Bottom - Copyright */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="pt-8 border-t border-gray-800"
-        >
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 text-center md:text-left">
-            <p className="text-xs text-gray-500">
-              © {new Date().getFullYear()} Banderas Mar del Plata. Todos los derechos reservados.
-            </p>
-            <p className="text-xs text-gray-500">
-              Diseñado por{" "}
-              <span className="text-sky-reflection-400 hover:text-sky-reflection-300 transition-colors">
-                OG comunicación y diseño
-              </span>
-            </p>
-          </div>
-        </motion.div>
       </div>
     </footer>
   );
 }
-

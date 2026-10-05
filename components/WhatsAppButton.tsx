@@ -3,11 +3,10 @@
 import { MessageCircle, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { waLink } from "@/lib/contact";
 
 export default function WhatsAppButton() {
   const [showTooltip, setShowTooltip] = useState(false);
-  const whatsappNumber = "542235416600";
-  const message = encodeURIComponent("¡Hola! Me gustaría consultar sobre sus productos.");
 
   return (
     <>
@@ -21,16 +20,16 @@ export default function WhatsAppButton() {
         onMouseLeave={() => setShowTooltip(false)}
       >
         <motion.a
-          href={`https://wa.me/${whatsappNumber}?text=${message}`}
+          href={waLink("¡Hola! Me gustaría consultar sobre sus productos.")}
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative flex items-center justify-center w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all"
+          className="group relative flex items-center justify-center w-16 h-16 bg-whatsapp hover:bg-whatsapp-hover rounded-full shadow-2xl transition-all"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
           {/* Pulso animado */}
           <motion.div
-            className="absolute inset-0 rounded-full bg-green-500"
+            className="absolute inset-0 rounded-full bg-whatsapp"
             animate={{
               scale: [1, 1.4, 1.4],
               opacity: [0.7, 0, 0],
@@ -66,13 +65,13 @@ export default function WhatsAppButton() {
               transition={{ duration: 0.2 }}
               className="absolute right-20 bottom-0 mb-2 whitespace-nowrap"
             >
-              <div className="bg-gray-900 text-white px-4 py-3 rounded-xl shadow-xl">
+              <div className="bg-brand-text-primary text-white px-4 py-3 rounded-xl shadow-xl">
                 <div className="font-semibold text-sm">¿Necesitás ayuda?</div>
-                <div className="text-xs text-gray-300">Chateá con nosotros</div>
+                <div className="text-xs text-white/70">Chateá con nosotros</div>
               </div>
               {/* Flecha */}
               <div className="absolute top-1/2 -right-2 transform -translate-y-1/2">
-                <div className="w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-l-8 border-l-gray-900"></div>
+                <div className="w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-l-8 border-l-brand-text-primary"></div>
               </div>
             </motion.div>
           )}

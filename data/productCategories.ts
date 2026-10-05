@@ -3,6 +3,21 @@ import { slugify } from "@/lib/slugify";
 export type ProductUso = "Interior" | "Exterior";
 export type ProductTamano = "Estándar" | "A medida";
 
+/**
+ * Slugs de las categorías del catálogo. `productCategories` es una PARTICIÓN
+ * ESTRICTA: cada ítem pertenece a exactamente una categoría, nunca a dos.
+ * Es la fuente de verdad de la faceta `tipo` de /productos y de `catalogProducts`.
+ */
+export const CATEGORY_SLUGS = [
+  "banderas",
+  "ceremonia",
+  "estandartes",
+  "astas-y-bases",
+  "accesorios",
+] as const;
+
+export type CategorySlug = (typeof CATEGORY_SLUGS)[number];
+
 export type CategoryItem = {
   name: string;
   description?: string;
@@ -15,6 +30,11 @@ export type CategoryItem = {
    * INFERIDOS a partir de las descripciones/categoría. EDITABLES: ajustar
    * libremente según la realidad de cada producto. Si un producto no tiene
    * valor, simplemente no aparecerá en ese filtro.
+   *
+   * ⚠️ LOAD-BEARING: `tamano: ["A medida"]` alimenta la tarjeta PERSONALIZADOS de
+   * la home (ver `homeCollections` más abajo), que es una colección DERIVADA de
+   * este campo y no una categoría real. Si se edita un `tamano`, el contenido de
+   * esa tarjeta cambia.
    */
   material?: string[];
   uso?: ProductUso[];
@@ -22,7 +42,7 @@ export type CategoryItem = {
 };
 
 export type ProductCategory = {
-  slug: string;
+  slug: CategorySlug;
   name: string;
   tagline: string;
   heroImage: string;
@@ -32,8 +52,8 @@ export type ProductCategory = {
 
 export const productCategories: ProductCategory[] = [
   {
-    slug: "banderas-flameo",
-    name: "Banderas Flameo",
+    slug: "banderas",
+    name: "Banderas",
     tagline: "Banderas para izar al viento, en distintos materiales y medidas",
     heroImage: "/productos/banderas-flameo.jpg",
     gradient: "from-sky-reflection-500 to-sky-reflection-700",
@@ -45,6 +65,18 @@ export const productCategories: ProductCategory[] = [
         material: ["Poliéster"],
         uso: ["Exterior"],
         tamano: ["Estándar"],
+      },
+      {
+        // Antes era la categoría "Banderas Extranjeras" (un solo ítem, "Cualquier país").
+        // Mismo producto, reubicado como ítem de Banderas según la taxonomía de marca.
+        name: "Extranjeras",
+        description:
+          "Confeccionamos banderas oficiales de cualquier país del mundo, en distintos materiales y medidas. Para embajadas, eventos internacionales, hoteles y particulares.",
+        notes: "Consultá disponibilidad y plazos según el país.",
+        imageUrl: "/productos/banderas-extranjeras.jpg",
+        material: ["Poliéster"],
+        uso: ["Interior", "Exterior"],
+        tamano: ["Estándar", "A medida"],
       },
       {
         name: "Institucionales",
@@ -63,14 +95,6 @@ export const productCategories: ProductCategory[] = [
         tamano: ["Estándar"],
       },
       {
-        name: "Personalizadas",
-        description: "Banderas a medida con diseño propio, full color, tela vinílica o sublimada.",
-        imageUrl: "/productos/flameo/personalizadas.jpg",
-        material: ["Vinílica", "Sublimada"],
-        uso: ["Exterior"],
-        tamano: ["A medida"],
-      },
-      {
         name: "Señalización",
         description: "Banderas de seguridad y señalización: peligro, obras, banderas de playa, etc.",
         imageUrl: "/productos/flameo/senializacion.jpg",
@@ -86,63 +110,19 @@ export const productCategories: ProductCategory[] = [
         uso: ["Exterior"],
         tamano: ["Estándar"],
       },
-    ],
-  },
-  {
-    slug: "banderas-extranjeras",
-    name: "Banderas Extranjeras",
-    tagline: "Banderas oficiales de países del mundo",
-    heroImage: "/productos/banderas-extranjeras.jpg",
-    gradient: "from-amber-400 to-amber-600",
-    items: [
       {
-        name: "Cualquier país",
-        description:
-          "Confeccionamos banderas oficiales de cualquier país del mundo, en distintos materiales y medidas. Para embajadas, eventos internacionales, hoteles y particulares.",
-        notes: "Consultá disponibilidad y plazos según el país.",
-        imageUrl: "/productos/banderas-extranjeras.jpg",
-        material: ["Poliéster"],
-        uso: ["Interior", "Exterior"],
-        tamano: ["Estándar", "A medida"],
-      },
-    ],
-  },
-  {
-    slug: "astas-y-bases",
-    name: "Astas y Bases",
-    tagline: "Mástiles y bases para banderas de flameo, escritorio y ceremonia",
-    heroImage: "/productos/astas-y-bases.jpg",
-    gradient: "from-slate-500 to-slate-700",
-    items: [
-      {
-        name: "Hierro",
-        description: "Astas de hierro para banderas de flameo. Robustas y duraderas, ideales para uso exterior.",
-        imageUrl: "/productos/astas/hierro.jpg",
-        material: ["Metal"],
+        name: "Personalizadas",
+        description: "Banderas a medida con diseño propio, full color, tela vinílica o sublimada.",
+        imageUrl: "/productos/flameo/personalizadas.jpg",
+        material: ["Vinílica", "Sublimada"],
         uso: ["Exterior"],
-        tamano: ["Estándar"],
-      },
-      {
-        name: "Escritorio",
-        description: "Mástiles y bases de escritorio para banderas pequeñas. En distintos materiales y terminaciones.",
-        imageUrl: "/productos/astas/escritorio.jpg",
-        material: ["Metal", "Madera"],
-        uso: ["Interior"],
-        tamano: ["Estándar"],
-      },
-      {
-        name: "Ceremonia",
-        description: "Mástiles para banderas de ceremonia, con moharra y regatón. Acordes a la reglamentación.",
-        imageUrl: "/productos/astas/ceremonia.jpg",
-        material: ["Madera"],
-        uso: ["Interior"],
-        tamano: ["Estándar"],
+        tamano: ["A medida"],
       },
     ],
   },
   {
-    slug: "banderas-ceremonia",
-    name: "Banderas Ceremonia",
+    slug: "ceremonia",
+    name: "Ceremonia",
     tagline: "Banderas reglamentarias y accesorios para escoltas y abanderados",
     heroImage: "/productos/banderas-ceremonia.jpg",
     gradient: "from-sky-reflection-600 to-sky-reflection-800",
@@ -248,6 +228,39 @@ export const productCategories: ProductCategory[] = [
     ],
   },
   {
+    slug: "astas-y-bases",
+    name: "Astas y Bases",
+    tagline: "Mástiles y bases para banderas de flameo, escritorio y ceremonia",
+    heroImage: "/productos/astas-y-bases.jpg",
+    gradient: "from-slate-500 to-slate-700",
+    items: [
+      {
+        name: "Hierro",
+        description: "Astas de hierro para banderas de flameo. Robustas y duraderas, ideales para uso exterior.",
+        imageUrl: "/productos/astas/hierro.jpg",
+        material: ["Metal"],
+        uso: ["Exterior"],
+        tamano: ["Estándar"],
+      },
+      {
+        name: "Escritorio",
+        description: "Mástiles y bases de escritorio para banderas pequeñas. En distintos materiales y terminaciones.",
+        imageUrl: "/productos/astas/escritorio.jpg",
+        material: ["Metal", "Madera"],
+        uso: ["Interior"],
+        tamano: ["Estándar"],
+      },
+      {
+        name: "Astas de ceremonia",
+        description: "Mástiles para banderas de ceremonia, con moharra y regatón. Acordes a la reglamentación.",
+        imageUrl: "/productos/astas/ceremonia.jpg",
+        material: ["Madera"],
+        uso: ["Interior"],
+        tamano: ["Estándar"],
+      },
+    ],
+  },
+  {
     slug: "accesorios",
     name: "Accesorios",
     tagline: "Escarapelas, cintas, pines, escudos, domes y calcomanías",
@@ -343,3 +356,99 @@ export const catalogProducts: CatalogProduct[] = productCategories.flatMap((cate
     categoryGradient: category.gradient,
   }))
 );
+
+if (process.env.NODE_ENV !== "production") {
+  const ids = catalogProducts.map((p) => p.id);
+  if (new Set(ids).size !== ids.length) {
+    const dupes = ids.filter((id, i) => ids.indexOf(id) !== i);
+    console.error(
+      `[productCategories] ids duplicados en catalogProducts: ${[...new Set(dupes)].join(", ")}`
+    );
+  }
+}
+
+/**
+ * Preset de filtros al que resuelve una tarjeta de la home.
+ * - `tipo`: preselecciona una o más categorías reales.
+ * - `facet`: preselecciona un valor de otra faceta del catálogo (colección derivada).
+ *
+ * El `group` se escribe como union literal en vez de importar `FilterGroup` desde
+ * `components/productos/CatalogFilters.tsx` para no acoplar la capa de datos a un
+ * componente cliente. Es type-compatible con `Exclude<FilterGroup, "tipo">`.
+ */
+export type CollectionPreset =
+  | { kind: "tipo"; slugs: CategorySlug[] }
+  | { kind: "facet"; group: "material" | "uso" | "tamano"; value: string };
+
+/**
+ * Las 6 tarjetas de categoría de la home. Capa de PRESENTACIÓN: no es la
+ * taxonomía. Permite mostrar 6 tarjetas sobre 5 categorías reales sin duplicar
+ * ítems ni inflar los conteos de las facetas.
+ */
+export type HomeCollection = {
+  /** Se usa en `/productos#<slug>`. */
+  slug: string;
+  /** En Title Case; la home lo muestra en mayúsculas por CSS. */
+  name: string;
+  description: string;
+  heroImage: string;
+  preset: CollectionPreset;
+};
+
+export const homeCollections: HomeCollection[] = [
+  {
+    slug: "banderas",
+    name: "Banderas",
+    description: "Argentinas · Extranjeras · Institucionales · Deportivas · Flameo",
+    heroImage: "/productos/banderas-flameo.jpg",
+    preset: { kind: "tipo", slugs: ["banderas"] },
+  },
+  {
+    slug: "ceremonia",
+    name: "Ceremonia",
+    description: "Banderas de ceremonia · Moños · Tahalíes · Bandas",
+    heroImage: "/productos/banderas-ceremonia.jpg",
+    preset: { kind: "tipo", slugs: ["ceremonia"] },
+  },
+  {
+    slug: "estandartes",
+    name: "Estandartes",
+    description: "Estandartes · Banners · Gallardetes · Lonas",
+    heroImage: "/productos/estandartes.jpg",
+    preset: { kind: "tipo", slugs: ["estandartes"] },
+  },
+  {
+    slug: "astas-y-bases",
+    name: "Astas y Bases",
+    description: "Astas de hierro · Escritorio · Ceremonia",
+    heroImage: "/productos/astas-y-bases.jpg",
+    preset: { kind: "tipo", slugs: ["astas-y-bases"] },
+  },
+  {
+    slug: "accesorios",
+    name: "Accesorios",
+    description: "Escarapelas · Cintas · Pines · Escudos · Calcos",
+    heroImage: "/productos/accesorios.jpg",
+    preset: { kind: "tipo", slugs: ["accesorios"] },
+  },
+  {
+    // Colección DERIVADA: no es una categoría. Resuelve a `tamano: "A medida"`,
+    // que hoy matchea 12 productos reales repartidos en las 5 categorías.
+    // TODO: pedir al cliente una foto propia para esta tarjeta.
+    slug: "personalizados",
+    name: "Personalizados",
+    description: "Tu diseño · Tu logo · Tu bandera",
+    heroImage: "/productos/flameo/personalizadas.jpg",
+    preset: { kind: "facet", group: "tamano", value: "A medida" },
+  },
+];
+
+/**
+ * Slugs de categoría anteriores al rediseño. Links externos y bookmarks del tipo
+ * `/productos#banderas-flameo` siguen funcionando gracias a este mapa.
+ */
+export const LEGACY_CATEGORY_HASHES: Record<string, string> = {
+  "banderas-flameo": "banderas",
+  "banderas-extranjeras": "banderas",
+  "banderas-ceremonia": "ceremonia",
+};

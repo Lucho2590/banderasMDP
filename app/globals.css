@@ -4,23 +4,30 @@
 
 @layer base {
   :root {
-    /* Sistema de diseño BanderasMDP - B2B corporativo / industrial premium */
+    /* Sistema de diseño BanderasMDP
+       Paleta de marca: azul #064B87 / celeste #2D9FEA / celeste claro #EAF5FC
+       texto #123B61 / amarillo de marca #F4C542 / verde WhatsApp #18B866 */
     --bg-primary: #FFFFFF;
-    --bg-secondary: #F8FAFC; /* slate-50 */
-    --bg-tertiary: #EFF6FF; /* blue-50 */
-    --text-primary: #0F172A; /* slate-900 */
-    --text-secondary: #475569; /* slate-600 */
-    --text-tertiary: #64748B; /* slate-500 */
-    --accent-primary: #1D4ED8; /* azul corporativo principal */
-    --accent-hover: #1E40AF; /* azul corporativo hover */
-    --accent-deep: #1E3A8A; /* azul corporativo oscuro */
-    --border-color: #E2E8F0; /* slate-200 */
-    --border-light: #F1F5F9; /* slate-100 */
-    --border-dark: #CBD5E1; /* slate-300 */
-    --sol-primary: #1D4ED8; /* ex-dorado, repointado a azul */
-    --sol-hover: #1E40AF;
-    --baltic-primary: #1E3A8A; /* azul profundo */
-    --baltic-hover: #172554;
+    --bg-secondary: #F5FAFD;
+    --bg-tertiary: #EAF5FC; /* light_blue de marca */
+    --text-primary: #123B61;
+    --text-secondary: #54708B;
+    --text-tertiary: #7A93AC;
+    --accent-primary: #064B87; /* azul de marca */
+    --accent-hover: #053E6F;
+    --accent-deep: #043055;
+    --accent-sky: #2D9FEA; /* celeste de marca */
+    --border-color: #DBE8F2;
+    --border-light: #EDF2F6;
+    --border-dark: #B9D5E7;
+    --sol-primary: #064B87; /* ex-dorado, repointado al azul de marca */
+    --sol-hover: #053E6F;
+    --baltic-primary: #064B87; /* azul profundo */
+    --baltic-hover: #043055;
+    --baltic-footer: #063A69;
+    --sun: #F4C542; /* amarillo de marca: solo marca del logo */
+    --whatsapp: #18B866;
+    --whatsapp-hover: #149B57;
 
     /* shadCN UI - Sincronizado con brand colors */
     --background: var(--bg-primary);
@@ -73,7 +80,7 @@
     text-wrap: balance;
   }
 
-  /* Gradientes - Azul corporativo sobrio */
+  /* Gradientes - Azul de marca */
   .gradient-primary {
     background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-hover) 100%);
   }
@@ -84,24 +91,34 @@
     animation: gradient-shift 12s ease infinite;
   }
 
-  /* Gradiente corporativo claro - secciones suaves */
+  /* Gradiente claro de marca - secciones suaves */
   .gradient-celeste-blanco {
-    background: linear-gradient(135deg, #FFFFFF 0%, #EFF6FF 40%, #DBEAFE 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #EAF5FC 40%, #C6E7F8 100%);
   }
 
-  /* Gradiente corporativo suave alternativo */
+  /* Gradiente suave alternativo */
   .gradient-celeste-suave {
-    background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 50%, #DBEAFE 100%);
+    background: linear-gradient(135deg, #F5FAFD 0%, #EAF5FC 50%, #DCEFFB 100%);
   }
 
-  /* Gradiente destacado - azul corporativo */
+  /* Gradiente destacado - azul de marca */
   .gradient-promo {
-    background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 100%);
+    background: linear-gradient(135deg, #064B87 0%, #2D9FEA 100%);
+  }
+
+  /* Hero claro de la home - fondo celeste luminoso */
+  .gradient-hero-light {
+    background: linear-gradient(110deg, #EEF8FD 0%, #DCEFFB 48%, #C6E7F8 100%);
+  }
+
+  /* Banda de CTA a WhatsApp */
+  .gradient-whatsapp-band {
+    background: linear-gradient(110deg, #DFF3FF 0%, #C6E7F8 100%);
   }
 
   /* Gradiente profundo - Para secciones oscuras */
   .gradient-baltic {
-    background: linear-gradient(135deg, #1E3A8A 0%, #172554 50%, #0B1120 100%);
+    background: linear-gradient(135deg, #064B87 0%, #043055 50%, #021A2E 100%);
   }
 
   /* Efecto glass mejorado - Tintes argentinos */
@@ -113,22 +130,22 @@
   }
 
   .glass-effect-dark {
-    background: rgba(36, 55, 66, 0.6); /* charcoal-blue con opacidad */
+    background: rgba(18, 59, 97, 0.6); /* azul de marca con opacidad */
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .glass-effect-celeste {
-    background: rgba(29, 78, 216, 0.12); /* azul corporativo con baja opacidad */
+    background: rgba(6, 75, 135, 0.12); /* azul de marca con baja opacidad */
     backdrop-filter: blur(12px) saturate(180%);
     -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border: 1px solid rgba(29, 78, 216, 0.25);
+    border: 1px solid rgba(6, 75, 135, 0.25);
   }
 
-  /* Efectos de sombra personalizados - Azul corporativo */
+  /* Efectos de sombra personalizados - Azul de marca */
   .shadow-glow {
-    box-shadow: 0 0 20px rgba(29, 78, 216, 0.25);
+    box-shadow: 0 0 20px rgba(6, 75, 135, 0.25);
   }
 
   .shadow-glow-hover {
@@ -136,11 +153,11 @@
   }
 
   .shadow-glow-hover:hover {
-    box-shadow: 0 0 30px rgba(29, 78, 216, 0.4);
+    box-shadow: 0 0 30px rgba(6, 75, 135, 0.4);
   }
 
   .shadow-glow-sol {
-    box-shadow: 0 0 25px rgba(29, 78, 216, 0.3); /* ex-dorado, repointado a azul */
+    box-shadow: 0 0 25px rgba(6, 75, 135, 0.3); /* ex-dorado, repointado al azul de marca */
   }
 
   /* Hover effects para cards */
